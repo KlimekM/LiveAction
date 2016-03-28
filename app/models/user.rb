@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 	has_many :friendships, foreign_key: :friend_1_id
   has_many :friends, through: :friendships, source: :friend
   has_many :checkins
-  has_many :checked_in_places, through: :checkins
+  has_many :visited_places, through: :checkins, class_name: "Place"
 
   validates :username, :first_name, :last_name, :email, { presence: true}
   has_secure_password
