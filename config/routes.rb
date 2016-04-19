@@ -8,12 +8,13 @@ Rails.application.routes.draw do
   resources :places do
     resources :comments, only: [:new, :create, :edit, :update, :destroy]
   end
-
-  resources :sessions, only: [:new, :create, :destroy]
+  
   resources :votes, only: [:create, :destroy]
   resources :friendships, only: [:create, :destroy]
 
-
+  get "login" => "sessions#new"
+  post "login" => "sessions#create"
+  get "logout" => "sessions#logout"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,13 @@
+<% if flash[:notice] %>
+	<%= flash[:notice] %>
+<% end %>
+
+<%= form_for :session, url: login_path do |f| %>
+	<%= f.label :username %>:
+	<%= f.text_field :username %><br/>
+
+	<%= f.label :password %>:
+	<%= f.password_field :password %><br/>
+	
+	<%= f.submit "Sign In" %>
+<% end %>
