@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe UsersController do
+	let!(:user) { User.create!(first_name: "Mike", last_name: "James", username: "mjames", email: "mjames@email.com", password: "password") }
+
 	describe "GET #new" do
 		it "assigns @user as a new instance of User" do
 			get :new 
@@ -10,7 +12,13 @@ describe UsersController do
 
 	describe "POST #create" do
 		context "when valid params are passed" do
-			
+			it "assigns @user as an instance of User" do
+				post :create, user: { first_name: user.first_name, last_name: user.last_name, username: user.username, email: user.email, password: user.password}
+				expect(assigns(:user)).to be_a(User)
+			end
+
+			it "assigns session[:user_id] to the new user's id if the user is saved" do
+			end
 		end
 	end
 
