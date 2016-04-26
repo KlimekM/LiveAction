@@ -39,6 +39,16 @@ describe UsersController do
 				post :create, user: { first_name: user.first_name, last_name: user.last_name, username: user.username, email: "", password: user.password}
 				expect(response).to render_template(:new)
 			end
+
+			it "does not assign a user to the current_user" do
+				post :create, user: { first_name: user.first_name, last_name: user.last_name, username: user.username, email: "", password: user.password}
+				expect(current_user).to be(nil)
+			end
+
+			it "returns false for the logged_in? method" do
+				post :create, user: { first_name: user.first_name, last_name: user.last_name, username: user.username, email: "", password: user.password}
+				expect(logged_in?).to be(false)
+			end
 		end
 	end
 
