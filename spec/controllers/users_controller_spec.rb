@@ -23,7 +23,7 @@ describe UsersController do
 				expect(response).to render_template(:show)
 			end
 
-			it "ensures that the current_user has the proper e-mail address" do
+			it "ensures that the current_user has the correct e-mail address" do
 				post :create, user: { first_name: user.first_name, last_name: user.last_name, username: user.username, email: user.email, password: user.password}
 				expect(current_user.email).to eq(user.email)
 			end
