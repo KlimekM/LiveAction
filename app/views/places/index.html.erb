@@ -1,1 +1,8 @@
 <h1>WELCOME TO LIVE ACTION!</h1>
+
+<% @places.each do |place| %>
+	<h2><%= place.name %></h2>
+	<p><%= place.description %></p>
+	<p>Address: <%= place.address %></p>
+	<p>Capacity: <%= place.capacity %></p>
+<% end %>
