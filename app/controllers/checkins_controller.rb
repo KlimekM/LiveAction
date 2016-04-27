@@ -6,6 +6,20 @@ class CheckinsController < ApplicationController
 
 	def create
 		@place = Place.find(params[:place_id])
-		@checkin = Checkin.new()
+		@checkin = Checkin.new(description: params[:checkin][:description], place_id: @place.id)
+		@user = User.find(session[:user_id])
+		@user.checkins << @checkin
+
+		if @checkin.save
+			render "show"
+		else
+			render	"new"
+		end
+	end
+
+	def show
+		@place = Place.find(params[:place_id])
+		@checkin = Checkin.find(params[:id])
+		@user = User.find(@checkin.user_id)
 	end
 end
