@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   end
 
   resources :places do
-    resources :checkins
+    resources :checkins do
+      resources :votes, only: [:create, :destroy]
+    end
   end
   
   resources :votes, only: [:create, :destroy]
