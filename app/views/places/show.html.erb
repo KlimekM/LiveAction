@@ -4,3 +4,7 @@
 
 <p>Address: <%= @place.address %></p>
 <p>Capacity: <%= @place.capacity %></p>
+
+<% if logged_in? %>
+<h3><%= link_to "Check-in", new_user_checkin_path(current_user) %></h3>
+<% end %>
