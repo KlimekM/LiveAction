@@ -9,7 +9,7 @@
 
 <% @checkins.each do |checkin| %>
 	<div>
-		<%= link_to "Like this check-in", place_checkin_votes_path(@place, @checkin) %>
+		<%= button_to "Like this check-in", votes_path %>
 		<h3><%= checkin.user.username %> checked in on <%= checkin.date_attended %></h3>
 		<h3>Description: <%= checkin.description %></h3>
 	</div>

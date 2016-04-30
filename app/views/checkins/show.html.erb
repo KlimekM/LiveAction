@@ -1,6 +1,6 @@
 <h1>Check-in details</h1>
 
-<%= link_to "Like this check-in", place_checkin_votes_path(@place, @checkin) %>
+<%= button_to "Like this check-in", votes_path %>
 <div>
 	<h3><%= @place.name %></h3>
 	<p>Description: <%= @place.description %></p>
