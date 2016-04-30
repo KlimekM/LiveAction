@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
   root "places#index"
 
-  resources :users, except: :index do
-    resources :checkins
-  end
+  resources :users, except: :index
 
   resources :places do
     resources :comments, only: [:new, :create, :edit, :update, :destroy]
+  end
+
+  resources :places do
+    resources :checkins do
+      resources :votes, only: [:create, :destroy]
+    end
   end
   
   resources :votes, only: [:create, :destroy]

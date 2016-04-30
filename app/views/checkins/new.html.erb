@@ -1,0 +1,11 @@
+<h1>Check in to this location!</h1>
+
+<div>
+	<h3><%= @place.name %></h3>
+	<p>Description: <%= @place.description %></p>
+	<p>Address: <%= @place.address %></p>
+	<p>Capacity: <%= @place.capacity %></p>
+</div>
+
+<%=  render "checkin_form" %>
+

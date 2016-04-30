@@ -1,0 +1,16 @@
+<h1>Check-ins for <%= @place.name %></h1>
+
+<div>
+	<h3><%= @place.name %></h3>
+	<p>Description: <%= @place.description %></p>
+	<p>Address: <%= @place.address %></p>
+	<p>Capacity: <%= @place.capacity %></p>
+</div>
+
+<% @checkins.each do |checkin| %>
+	<div>
+		<%= button_to "Like this check-in", votes_path %>
+		<h3><%= checkin.user.username %> checked in on <%= checkin.date_attended %></h3>
+		<h3>Description: <%= checkin.description %></h3>
+	</div>
+<% end %>
