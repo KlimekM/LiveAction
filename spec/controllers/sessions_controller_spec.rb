@@ -65,6 +65,7 @@ describe SessionsController do
 
   describe "GET #logout" do
     it "removes the session user_id" do
+      post :create, user: { username: user.username, password: user.password }
       get :logout
       expect(session[:user_id]).to be(nil)
     end
