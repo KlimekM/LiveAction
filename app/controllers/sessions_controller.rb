@@ -1,24 +1,24 @@
 class SessionsController < ApplicationController
-	def new
+  def new
     @user = User.new
   end
 
   def create
-  	if @user = User.find_by(username: session_params[:username]).try(:authenticate, session_params[:password])
-  		session[:user_id] = @user.id
+    if @user = User.find_by(username: session_params[:username]).try(:authenticate, session_params[:password])
+      session[:user_id] = @user.id
       redirect_to @user
     else
-    	flash[:notice] = "The username or password is incorrect."
-    	render "new"
-  	end
+      flash[:notice] = "The username or password is incorrect."
+      render "new"
+    end
   end
 
-	def logout
-		reset_session
+  def logout
+    reset_session
     redirect_to '/'
-	end
+  end
 
-	private
+  private
      def session_params
       params.require(:user).permit(:username, :password)
     end
