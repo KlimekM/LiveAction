@@ -51,4 +51,18 @@ describe UsersController do
       end
     end
   end
+
+  describe "GET #show" do
+    context "when a user exists" do
+      it "assigns @user as an instance of User" do
+        get :show, id: user.id
+        expect(assigns(:user)).to be_a(User)
+      end
+
+      it "ensures @user has the correct id" do
+        get :show, id: user.id
+        expect(assigns(:user).id).to eq(user.id)
+      end
+    end
+  end
 end
