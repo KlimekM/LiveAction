@@ -49,8 +49,11 @@ describe CheckinsController do
   describe "POST #create" do
     context "when valid params are passed" do
       let!(:place) { FactoryGirl.create :place }
+      let!(:user) { FactoryGirl.create :user }
+      let!(:checkin) { FactoryGirl.build :checkin, place_id: place.id, user_id: user.id }
       it "assigns @place to the correct instance of Place" do
-        post :create, place_id: place.id, checkin:
+        post :create, place_id: place.id, checkin: { description: checkin.description, place_id: checkin.place_id, date_attended: "PICK IT UP HERE" }
+        expect(assigns(:place).id).to eq(place.id)
       end
     end
   end
