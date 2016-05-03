@@ -4,6 +4,10 @@ class PlacesController < ApplicationController
   end
 
   def show
-    @place = Place.find(params[:id])
+    @place = Place.find_by_id(params[:id])
+    if @place
+    else
+      flash[:notice] = "The place that you requested does not exist."
+    end
   end
 end

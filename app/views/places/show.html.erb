@@ -1,9 +1,13 @@
+<% if @place %>
 <h1><%= @place.name %></h1>
 
 <h2><%= @place.description %></h2>
 
 <p>Address: <%= @place.address %></p>
 <p>Capacity: <%= @place.capacity %></p>
+<% else %>
+  <%= flash[:notice] %>
+<% end %>
 
 <% if logged_in? %>
 <h3><%= link_to "Check-in", new_place_checkin_path(@place) %></h3>

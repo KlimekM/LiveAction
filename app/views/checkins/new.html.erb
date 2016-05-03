@@ -1,3 +1,4 @@
+<% if @place %>
 <h1>Check in to this location!</h1>
 
 <div>
@@ -8,4 +9,7 @@
 </div>
 
 <%=  render "checkin_form" %>
+<% else %>
+  <%= flash[:notice] %>
+<% end %>
 
