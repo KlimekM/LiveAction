@@ -10,12 +10,17 @@ describe CheckinsController do
       end
 
       it "assigns @checkins to the appropriate places' checkins" do
+        checkins = FactoryGirl.create_list(:checkin, 3, place_id: place.id)
         get :index, place_id: place.id
-        expect(assigns(:checkins).length).to eq(1)
+        expect(assigns(:checkins).length).to eq(3)
       end
     end
 
     context "when a place does not exist" do
+      it "assigns 'The place that you requested does not exist.' as a flash[:notice]" do
+        get :index, place_id: Faker::Number.number(5)
+        expect(flash[:notice]).to eq("The place that you requested does not exist.")
+      end
     end
   end
 end
