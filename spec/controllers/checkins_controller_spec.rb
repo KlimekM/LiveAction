@@ -52,8 +52,21 @@ describe CheckinsController do
       let!(:user) { FactoryGirl.create :user }
       let!(:checkin) { FactoryGirl.build :checkin, place_id: place.id, user_id: user.id }
       it "assigns @place to the correct instance of Place" do
-        post :create, place_id: place.id, checkin: { description: checkin.description, place_id: checkin.place_id, date_attended: "PICK IT UP HERE" }
+        session[:user_id] = user.id
+        post :create, user_id: user.id, place_id: place.id, checkin: { description: checkin.description, place_id: checkin.place_id, "date_attended(1i)"=>"2015", "date_attended(2i)"=>"5", "date_attended(3i)"=>"3" }
         expect(assigns(:place).id).to eq(place.id)
+      end
+
+      it "adds a checkin to @user.checkins" do
+        session[:user_id] = user.id
+        post :create, user_id: user.id, place_id: place.id, checkin: { description: checkin.description, place_id: checkin.place_id, "date_attended(1i)"=>"2015", "date_attended(2i)"=>"5", "date_attended(3i)"=>"3" }
+        expect(assigns(:user).checkins.count).to eq(user.checkins.count)
+      end
+
+      it "renders the checkins index page when the checkin saves" do
+        session[:user_id] = user.id
+        post :create, user_id: user.id, place_id: place.id, checkin: { description: checkin.description, place_id: checkin.place_id, "date_attended(1i)"=>"2015", "date_attended(2i)"=>"5", "date_attended(3i)"=>"3" }
+        expect(response).to render_template(:index)
       end
     end
   end
