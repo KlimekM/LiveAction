@@ -1,3 +1,4 @@
+<% if @place %>
 <h1>Check-ins for <%= @place.name %></h1>
 
 <div>
@@ -13,4 +14,7 @@
     <h3><%= checkin.user.username %> checked in on <%= checkin.date_attended %></h3>
     <h3>Description: <%= checkin.description %></h3>
   </div>
+<% end %>
+<% else %>
+  <%= flash[:notice] %>
 <% end %>
