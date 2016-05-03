@@ -9,8 +9,12 @@ class CheckinsController < ApplicationController
   end
 
   def new
-    @place = Place.find(params[:place_id])
-    @checkin = Checkin.new
+    @place = Place.find_by_id(params[:place_id])
+    if @place
+      @checkin = Checkin.new
+    else
+      flash[:notice] = "The place that you requested does not exist."
+    end
   end
 
   def create

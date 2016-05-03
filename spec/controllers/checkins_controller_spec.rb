@@ -23,4 +23,26 @@ describe CheckinsController do
       end
     end
   end
+
+  describe "GET #new" do
+    context "when a place exists" do
+      let!(:place) { FactoryGirl.create :place }
+      it "assigns @place as the correct instance of Place" do
+        get :new, place_id: place.id
+        expect(assigns(:place).id).to eq(place.id)
+      end
+
+      it "assigns @checkin as an instance of Checkin" do
+        get :new, place_id: place.id
+        expect(assigns(:checkin)).to be_a(Checkin)
+      end
+    end
+
+    context "when a place does not exist" do
+      it "assigns 'The place that you requested does not exist.' as a flash[:notice]" do
+        get :new, place_id: Faker::Number.number(5)
+        expect(flash[:notice]).to eq("The place that you requested does not exist.")
+      end
+    end
+  end
 end
