@@ -45,4 +45,13 @@ describe CheckinsController do
       end
     end
   end
+
+  describe "POST #create" do
+    context "when valid params are passed" do
+      let!(:place) { FactoryGirl.create :place }
+      it "assigns @place to the correct instance of Place" do
+        post :create, place_id: place.id, checkin:
+      end
+    end
+  end
 end
