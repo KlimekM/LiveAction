@@ -1,5 +1,6 @@
 <h1>Check-in details</h1>
 
+<% if @place && @checkin %>
 <%= button_to "Like this check-in", votes_path %>
 <div>
   <h3><%= @place.name %></h3>
@@ -12,3 +13,6 @@
   <h3><%= @user.username %> checked in on <%= @checkin.date_attended %></h3>
   <h3>Description: <%= @checkin.description %></h3>
 </div>
+<% else %>
+  <%= flash[:notice] %>
+<% end %>
