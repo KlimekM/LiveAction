@@ -22,5 +22,12 @@ describe PlacesController do
         expect(assigns(:place).id).to eq(place.id)
       end
     end
+
+    context "when a place does not exist" do
+      it "assigns 'The place that you requested does not exist.' as a flash[:notice]" do
+        get :show, id: Faker::Number.number(5)
+        expect(flash[:notice]).to eq("The place that you requested does not exist.")
+      end
+    end
   end
 end
