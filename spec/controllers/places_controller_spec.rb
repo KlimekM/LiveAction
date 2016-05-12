@@ -11,7 +11,7 @@ describe PlacesController do
 
   describe "GET #show" do
     context "when a place exists" do
-      let!(:place) { FactoryGirl.create :place }
+      let(:place) { FactoryGirl.create :place }
       it "assigns @place as an instance of Place" do
         get :show, id: place.id
         expect(assigns(:place)).to be_a(Place)
