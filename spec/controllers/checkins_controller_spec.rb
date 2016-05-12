@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CheckinsController do
   describe "GET #index" do
     context "when a place exists" do
-      let!(:place) { FactoryGirl.create :place }
+      let(:place) { FactoryGirl.create :place }
       it "assigns @place as the correct instance of Place" do
         get :index, place_id: place.id
         expect(assigns(:place).id).to eq(place.id)
@@ -26,7 +26,7 @@ describe CheckinsController do
 
   describe "GET #new" do
     context "when a place exists" do
-      let!(:place) { FactoryGirl.create :place }
+      let(:place) { FactoryGirl.create :place }
       it "assigns @place as the correct instance of Place" do
         get :new, place_id: place.id
         expect(assigns(:place).id).to eq(place.id)
@@ -48,9 +48,9 @@ describe CheckinsController do
 
   describe "POST #create" do
     context "when valid params are passed" do
-      let!(:place) { FactoryGirl.create :place }
-      let!(:user) { FactoryGirl.create :user }
-      let!(:checkin) { FactoryGirl.build :checkin, place_id: place.id, user_id: user.id }
+      let(:place) { FactoryGirl.create :place }
+      let(:user) { FactoryGirl.create :user }
+      let(:checkin) { FactoryGirl.build :checkin, place_id: place.id, user_id: user.id }
       it "assigns @place to the correct instance of Place" do
         session[:user_id] = user.id
         post :create, place_id: place.id, checkin: { description: checkin.description, place_id: checkin.place_id, "date_attended(1i)"=>"2015", "date_attended(2i)"=>"5", "date_attended(3i)"=>"3" }
@@ -72,9 +72,9 @@ describe CheckinsController do
 
     context "when invalid params are passed" do
       # Having a difficult time, breaking code to get test to pass.
-      let!(:place) { FactoryGirl.create :place }
-      let!(:user) { FactoryGirl.create :user }
-      let!(:checkin) { FactoryGirl.build :checkin, place_id: place.id, user_id: user.id }
+      let(:place) { FactoryGirl.create :place }
+      let(:user) { FactoryGirl.create :user }
+      let(:checkin) { FactoryGirl.build :checkin, place_id: place.id, user_id: user.id }
       it "re-renders the new checkin template" do
         session[:user_id] = user.id
         post :create, place_id: place.id, checkin: { description: checkin.description, place_id: checkin.place_id, "date_attended(1i)"=>"2015", "date_attended(2i)"=>"5", "date_attended(3i)"=>"3" }
@@ -85,8 +85,8 @@ describe CheckinsController do
 
   describe "GET #show" do
     context "when a place and checkin exist" do
-      let!(:place) { FactoryGirl.create :place }
-      let!(:checkin) { FactoryGirl.create :checkin }
+      let(:place) { FactoryGirl.create :place }
+      let(:checkin) { FactoryGirl.create :checkin }
       let!(:user) { FactoryGirl.create :user, id: checkin.user_id }
       it "assigns @place, @checkin, and @user to the correct place, checkin, and user" do
         get :show, place_id: place.id, id: checkin.id
@@ -97,9 +97,9 @@ describe CheckinsController do
     end
 
     context "when a place or checkin do not exist" do
-      let!(:place) { FactoryGirl.create :place }
-      let!(:checkin) { FactoryGirl.create :checkin }
-      let!(:user) { FactoryGirl.create :user, id: checkin.user_id }
+      let(:place) { FactoryGirl.create :place }
+      let(:checkin) { FactoryGirl.create :checkin }
+      let(:user) { FactoryGirl.create :user, id: checkin.user_id }
       it "assigns 'The place or checkin that you requested does not exist.' as a flash[:notice]" do
         get :show, place_id: place.id, id: Faker::Number.number(5)
         expect(flash[:notice]).to eq("The place or checkin that you requested does not exist.")

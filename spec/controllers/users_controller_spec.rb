@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe UsersController do
   include SessionsHelper
-  let!(:user) { FactoryGirl.create :user }
+  let(:user) { FactoryGirl.create :user }
 
   describe "GET #new" do
     it "assigns @user as a new instance of User" do
