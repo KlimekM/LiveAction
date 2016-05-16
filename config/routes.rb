@@ -9,11 +9,11 @@ Rails.application.routes.draw do
 
   resources :places do
     resources :checkins do
-      resources :votes, only: [:create, :destroy]
+      resources :likes, only: [:create, :destroy]
     end
   end
-  
-  resources :votes, only: [:create, :destroy]
+
+  resources :likes, only: [:create, :destroy]
   resources :friendships, only: [:create, :destroy]
 
   get "login" => "sessions#new"

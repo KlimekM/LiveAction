@@ -10,7 +10,7 @@
 
 <% @checkins.each do |checkin| %>
   <div>
-    <%= button_to "Like this check-in", votes_path, params: { checkin_id: checkin.id } %>
+    <%= render "like", checkin: checkin %>
     <h3><%= checkin.user.username %> checked in on <%= checkin.date_attended %></h3>
     <h3>Description: <%= checkin.description %></h3>
   </div>
