@@ -13,6 +13,7 @@ describe LikesController do
   end
 
   describe "DELETE #destroy" do
+    # Throwing an error on line 22 here!
     let(:user) { FactoryGirl.create :user }
     let(:checkin) { FactoryGirl.create :checkin }
     let(:like) { Like.create(liker_id: user.id, likeable_type: "Checkin", likeable_id: checkin.id)}
