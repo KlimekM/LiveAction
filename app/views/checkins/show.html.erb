@@ -20,6 +20,9 @@
   <% @checkin.comments.each do |comment| %>
     <div>
       <p><%= comment.commenter.username %>: <%= comment.text %></p>
+      <% if comment.commenter_id == current_user.id %>
+        <%= button_to "Delete this comment", place_checkin_comment_path(@place, @checkin, comment), method: :delete %>
+      <% end %>
     </div>
   <% end %>
 

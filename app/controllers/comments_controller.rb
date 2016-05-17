@@ -6,4 +6,8 @@ class CommentsController < ApplicationController
     # change this to if @... .save, else render
     redirect_to [@place, @checkin]
   end
+
+  def destroy
+
+  end
 end
