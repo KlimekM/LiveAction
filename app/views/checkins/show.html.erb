@@ -13,6 +13,12 @@
   <h3><%= @user.username %> checked in on <%= @checkin.date_attended %></h3>
   <h3>Description: <%= @checkin.description %></h3>
 </div>
+
+<div>
+  <h4>Likes and comments</h4>
+  <p><%= @checkin.likes.count %> people liked this.</p>
+</div>
+
 <% else %>
   <%= flash[:notice] %>
 <% end %>
