@@ -17,6 +17,10 @@
 <div>
   <h4>Likes and comments</h4>
   <p><%= @checkin.likes.count %> people liked this.</p>
+  <%= form_for [@place, @checkin, @comment] do |f| %>
+    <%= f.text_area :text %><br/>
+    <%= f.submit "Post Comment" %>
+  <% end %>
 </div>
 
 <% else %>

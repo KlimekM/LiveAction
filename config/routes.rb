@@ -4,12 +4,9 @@ Rails.application.routes.draw do
   resources :users, except: :index
 
   resources :places do
-    resources :comments, only: [:new, :create, :edit, :update, :destroy]
-  end
-
-  resources :places do
     resources :checkins do
       resources :likes, only: [:create, :destroy]
+      resources :comments, only: [:new, :create, :edit, :update, :destroy]
     end
   end
 

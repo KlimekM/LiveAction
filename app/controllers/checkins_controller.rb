@@ -33,6 +33,7 @@ class CheckinsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     @place = Place.find_by_id(params[:place_id])
     @checkin = Checkin.find_by_id(params[:id])
     if @place && @checkin
