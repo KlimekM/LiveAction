@@ -1,7 +1,7 @@
 <h1>Check-in details</h1>
 
 <% if @place && @checkin %>
-  <%= render "like", checkin: @checkin %>
+  <%= render "checkins/like", checkin: @checkin %>
 <div>
   <h3><%= @place.name %></h3>
   <p>Description: <%= @place.description %></p>
@@ -17,6 +17,12 @@
 <div>
   <h4>Likes and comments</h4>
   <p><%= @checkin.likes.count %> people liked this.</p>
+  <% @checkin.comments.each do |comment| %>
+    <div>
+      <p><%= comment.commenter.username %>: <%= comment.text %></p>
+    </div>
+  <% end %>
+
   <%= form_for [@place, @checkin, @comment] do |f| %>
     <%= f.text_area :text %><br/>
     <%= f.submit "Post Comment" %>
