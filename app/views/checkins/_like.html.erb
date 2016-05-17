@@ -1,6 +1,6 @@
 <% if current_user.id && current_user.likes.find_by(liker_id: current_user.id, likeable_id: checkin.id) %>
   <% @like = Like.find_by(:liker_id => current_user.id, :likeable_id => checkin.id) %>
-  <%= button_to "Unlike this check-in", like_path(@like), method: "delete", params: {user_id: current_user.id, checkin_id: checkin.id } %>
+  <%= button_to "Unlike this check-in", like_path(@like), method: "delete", params: { user_id: current_user.id, checkin_id: checkin.id } %>
 <% else %>
   <%= button_to "Like this check-in", likes_path, params: { checkin_id: checkin.id } %>
 <% end %>

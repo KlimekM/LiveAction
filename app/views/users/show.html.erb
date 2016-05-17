@@ -2,6 +2,10 @@
 
 <h2><%= @user.username %></h2>
 
-<% if @user.id != current_user.id %>
-<%= link_to "Add Friend", friendships_path %>
+<% if @user.id != current_user.id && current_user.friends.include?(@user) %>
+<%= link_to "Remove Friend", friendship_path(id: @user.id), method: :delete %>
+
+<% elsif @user.id != current_user.id %>
+<%= link_to "Add Friend", friendships_path(id: @user.id), method: :post %>
+
 <% end %>
