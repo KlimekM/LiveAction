@@ -1,7 +1,7 @@
 <h1>Check-in details</h1>
 
 <% if @place && @checkin %>
-  <%= render "like", checkin: @checkin %>
+  <%= render "checkins/like", checkin: @checkin %>
 <div>
   <h3><%= @place.name %></h3>
   <p>Description: <%= @place.description %></p>
@@ -13,6 +13,25 @@
   <h3><%= @user.username %> checked in on <%= @checkin.date_attended %></h3>
   <h3>Description: <%= @checkin.description %></h3>
 </div>
+
+<div>
+  <h4>Likes and comments</h4>
+  <p><%= @checkin.likes.count %> people liked this.</p>
+  <% @checkin.comments.each do |comment| %>
+    <div>
+      <p><%= comment.commenter.username %>: <%= comment.text %></p>
+      <% if comment.commenter_id == current_user.id %>
+        <%= button_to "Delete this comment", place_checkin_comment_path(@place, @checkin, comment), method: :delete, params: { id: comment.id } %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= form_for [@place, @checkin, @comment] do |f| %>
+    <%= f.text_area :text %><br/>
+    <%= f.submit "Post Comment" %>
+  <% end %>
+</div>
+
 <% else %>
   <%= flash[:notice] %>
 <% end %>

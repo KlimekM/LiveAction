@@ -1,8 +1,8 @@
 class Checkin < ActiveRecord::Base
   belongs_to :user
   belongs_to :place
-  has_many   :comments
-  has_many   :likes
+  has_many   :comments, foreign_key: :commentable_id
+  has_many   :likes, foreign_key: :likeable_id
 
   validates_presence_of :date_attended
 
