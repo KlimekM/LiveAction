@@ -42,14 +42,7 @@ describe CommentsController do
     let(:place) { FactoryGirl.create :place_with_checkin }
     let(:checkin) { FactoryGirl.create :checkin, place_id: place.id }
     let(:comment) { FactoryGirl.create :comment }
-    it "assigns comment as the correct instance of comment" do
-      session[:user_id] = user.id
-      post :create, place_id: place.id, checkin_id: checkin.id, comment: { text: comment.text }
-      delete :destroy, id: comment.id, place_id: place.id, checkin_id: checkin.id
-      expect(assigns(:comment).id).to eq(checkin.comments.last.id)
-    end
-
-    it "deletes the appropriate comment" do
+    it "finds and deletes the correct instance of Comment" do
       session[:user_id] = user.id
       post :create, place_id: place.id, checkin_id: checkin.id, comment: { text: comment.text }
       delete :destroy, id: Comment.last.id, place_id: place.id, checkin_id: checkin.id
