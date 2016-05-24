@@ -55,5 +55,12 @@ describe CommentsController do
       delete :destroy, id: Comment.last.id, place_id: place.id, checkin_id: checkin.id
       expect(Comment.find_by(commenter_id: user.id)).to be nil
     end
+
+    it "redirect to the correct checkin" do
+      session[:user_id] = user.id
+      post :create, place_id: place.id, checkin_id: checkin.id, comment: { text: comment.text }
+      delete :destroy, id: Comment.last.id, place_id: place.id, checkin_id: checkin.id
+      expect(response).to redirect_to([place, checkin])
+    end
   end
 end
