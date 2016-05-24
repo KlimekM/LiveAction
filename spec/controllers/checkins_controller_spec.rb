@@ -86,8 +86,8 @@ describe CheckinsController do
   describe "GET #show" do
     context "when a place and checkin exist" do
       let(:place) { FactoryGirl.create :place }
+      let(:user) { FactoryGirl.create :user }
       let(:checkin) { FactoryGirl.create :checkin }
-      let!(:user) { FactoryGirl.create :user, id: checkin.user_id }
       it "assigns @place, @checkin, and @user to the correct place, checkin, and user" do
         get :show, place_id: place.id, id: checkin.id
         expect(assigns(:place).address).to eq(place.address)
