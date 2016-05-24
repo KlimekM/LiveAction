@@ -4,10 +4,23 @@ describe LikesController do
   describe "POST #create" do
     let(:user) { FactoryGirl.create :user }
     let(:place) { FactoryGirl.create :place_with_checkin }
+    it "assigns @user as the correct user" do
+      session[:user_id] = user.id
+      post :create, checkin_id: place.checkins.last.id
+      expect(assigns(:user).id).to eq(user.id)
+    end
+
     it "creates a like linked to the correct liker" do
       session[:user_id] = user.id
       post :create, checkin_id: place.checkins.last.id
       expect(Like.last.liker_id).to eq(user.id)
+    end
+
+    it "redirects to the correct checkin" do
+      session[:user_id] = user.id
+      checkin = place.checkins.last
+      post :create, checkin_id: checkin.id
+      expect(response).to redirect_to([place, checkin])
     end
   end
 
