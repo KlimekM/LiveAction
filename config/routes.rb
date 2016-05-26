@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
   root "places#index"
 
-  resources :users, except: :index
+  resources :users, except: [:index, :destroy]
 
-  resources :places do
+  resources :places, only: [:index, :show] do
     resources :checkins do
-      resources :likes, only: [:create, :destroy]
       resources :comments, only: [:new, :create, :edit, :update, :destroy]
     end
   end

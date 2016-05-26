@@ -8,6 +8,8 @@
   <p>Capacity: <%= @place.capacity %></p>
 </div>
 
+<h2><%= link_to "Check-in to this location!", new_place_checkin_path(@place) %><h2>
+
 <% @checkins.each do |checkin| %>
   <div>
     <h3><%= link_to "Check-in #{checkin.id}", "/places/#{@place.id}/checkins/#{checkin.id}" %></h3>
@@ -17,7 +19,6 @@
   </div>
 <% end %>
 
-<h2><%= link_to "Check-in to this location!", new_place_checkin_path(@place) %><h2>
 <% else %>
   <%= flash[:notice] %>
 <% end %>

@@ -10,7 +10,22 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       render "show"
     else
+      flash[:notice] = "The required fields can not be empty."
       render "new"
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(person_params)
+      redirect_to @user
+    else
+      flash[:notice] = "The required fields can not be empty."
+      render "edit"
     end
   end
 
