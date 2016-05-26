@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :users, except: [:index, :destroy]
 
-  resources :places do
+  resources :places, only: [:index, :show] do
     resources :checkins do
       resources :comments, only: [:new, :create, :edit, :update, :destroy]
     end

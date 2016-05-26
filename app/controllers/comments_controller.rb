@@ -7,6 +7,14 @@ class CommentsController < ApplicationController
     redirect_to [@place, @checkin]
   end
 
+  def edit
+    # Complete functionality to edit a comment.
+  end
+
+  def update
+    # Complete functionality to update a comment.
+  end
+
   def destroy
     comment = Comment.find_by_id(params[:id])
     comment.destroy

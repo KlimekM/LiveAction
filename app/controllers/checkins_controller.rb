@@ -32,6 +32,14 @@ class CheckinsController < ApplicationController
     end
   end
 
+  def edit
+    # Complete functionality to edit a checkin.
+  end
+
+  def update
+    # Complete functionality to update a checkin.
+  end
+
   def show
     @comment = Comment.new
     @place = Place.find_by_id(params[:place_id])
