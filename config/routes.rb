@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
   resources :places do
     resources :checkins do
-      resources :likes, only: [:create, :destroy]
       resources :comments, only: [:new, :create, :edit, :update, :destroy]
     end
   end
