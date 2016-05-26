@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "places#index"
 
-  resources :users, except: :index
+  resources :users, except: [:index, :destroy]
 
   resources :places do
     resources :checkins do
