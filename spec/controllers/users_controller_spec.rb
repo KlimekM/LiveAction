@@ -68,6 +68,38 @@ describe UsersController do
     end
   end
 
+  describe "PUT #update" do
+    context "when valid params are passed" do
+      it "assigns @user as the correct instance of User" do
+        new_last_name = Faker::Name.last_name
+        get :edit, id: user.id
+        put :update, id: user.id, user: {last_name: new_last_name }
+        expect(assigns(:user).id).to eq(user.id)
+      end
+
+      it "changes the last name of the user to new_last_name" do
+        new_last_name = Faker::Name.last_name
+        get :edit, id: user.id
+        put :update, id: user.id, user: {last_name: new_last_name }
+        expect(assigns(:user).last_name).to eq(new_last_name)
+      end
+
+      it "redirects to the appropriate user" do
+        new_last_name = Faker::Name.last_name
+        get :edit, id: user.id
+        put :update, id: user.id, user: {last_name: new_last_name }
+        expect(response).to redirect_to(user)
+      end
+    end
+
+    context "when invalid params are passed" do
+      it "assigns 'The required fields can not be empty.' to flash[:notice]"
+        get :edit, id: user.id
+        put :update, id: user.id, user: {last_name: new_last_name }
+        expect(response).to redirect_to(user)
+      end
+    end
+  end
   describe "GET #show" do
     context "when a user exists" do
       it "assigns @user as an instance of User" do
