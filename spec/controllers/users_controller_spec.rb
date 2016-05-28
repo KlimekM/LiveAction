@@ -52,6 +52,61 @@ describe UsersController do
     end
   end
 
+  describe "GET #edit" do
+    context "when a user exists" do
+      it "assigns @user to the correct instance of User" do
+        get :edit, id: user.id
+        expect(assigns(:user).id).to eq(user.id)
+      end
+    end
+
+    context "when a user does not exist" do
+      it "assigns @user as an instance of User" do
+        get :edit, id: 50000
+        expect(assigns(:user)).to be_a(User)
+      end
+    end
+  end
+
+  describe "PUT #update" do
+    context "when valid params are passed" do
+      it "assigns @user as the correct instance of User" do
+        new_last_name = Faker::Name.last_name
+        get :edit, id: user.id
+        put :update, id: user.id, user: {last_name: new_last_name }
+        expect(assigns(:user).id).to eq(user.id)
+      end
+
+      it "changes the last name of the user to new_last_name" do
+        new_last_name = Faker::Name.last_name
+        get :edit, id: user.id
+        put :update, id: user.id, user: {last_name: new_last_name }
+        expect(assigns(:user).last_name).to eq(new_last_name)
+      end
+
+      it "redirects to the appropriate user" do
+        new_last_name = Faker::Name.last_name
+        get :edit, id: user.id
+        put :update, id: user.id, user: {last_name: new_last_name }
+        expect(response).to redirect_to(user)
+      end
+    end
+
+    context "when invalid params are passed" do
+      it "assigns 'The required fields can not be empty.' to flash[:notice]" do
+        get :edit, id: user.id
+        put :update, id: user.id, user: { username: "" }
+        expect(flash[:notice]).to eq("The required fields can not be empty.")
+      end
+
+      it "re-renders the user edit page" do
+        get :edit, id: user.id
+        put :update, id: user.id, user: { username: "" }
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
+
   describe "GET #show" do
     context "when a user exists" do
       it "assigns @user as an instance of User" do
