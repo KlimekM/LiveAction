@@ -16,7 +16,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    if @user = User.find_by_id(params[:id])
+    else
+      @user = User.new
+    end
   end
 
   def update

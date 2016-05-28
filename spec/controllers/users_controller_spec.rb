@@ -52,6 +52,22 @@ describe UsersController do
     end
   end
 
+  describe "GET #edit" do
+    context "when a user exists" do
+      it "assigns @user to the correct instance of User" do
+        get :edit, id: user.id
+        expect(assigns(:user).id).to eq(user.id)
+      end
+    end
+
+    context "when a user does not exist" do
+      it "assigns @user as an instance of User" do
+        get :edit, id: 50000
+        expect(assigns(:user)).to be_a(User)
+      end
+    end
+  end
+
   describe "GET #show" do
     context "when a user exists" do
       it "assigns @user as an instance of User" do
