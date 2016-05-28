@@ -93,13 +93,20 @@ describe UsersController do
     end
 
     context "when invalid params are passed" do
-      it "assigns 'The required fields can not be empty.' to flash[:notice]"
+      it "assigns 'The required fields can not be empty.' to flash[:notice]" do
         get :edit, id: user.id
-        put :update, id: user.id, user: {last_name: new_last_name }
-        expect(response).to redirect_to(user)
+        put :update, id: user.id, user: { username: "" }
+        expect(flash[:notice]).to eq("The required fields can not be empty.")
+      end
+
+      it "re-renders the user edit page" do
+        get :edit, id: user.id
+        put :update, id: user.id, user: { username: "" }
+        expect(response).to render_template(:edit)
       end
     end
   end
+
   describe "GET #show" do
     context "when a user exists" do
       it "assigns @user as an instance of User" do
