@@ -71,13 +71,12 @@ describe CheckinsController do
     end
 
     context "when invalid params are passed" do
-      # Having a difficult time, breaking code to get test to pass.
       let(:place) { FactoryGirl.create :place }
       let(:user) { FactoryGirl.create :user }
       let(:checkin) { FactoryGirl.build :checkin, place_id: place.id, user_id: user.id }
       it "re-renders the new checkin template" do
         session[:user_id] = user.id
-        post :create, place_id: place.id, checkin: { description: checkin.description, place_id: checkin.place_id, "date_attended(1i)"=>"2015", "date_attended(2i)"=>"5", "date_attended(3i)"=>"3" }
+        post :create, place_id: place.id, checkin: { description: checkin.description, place_id: checkin.place_id, "date_attended(1i)"=>"2050", "date_attended(2i)"=>"5", "date_attended(3i)"=>"3" }
         expect(response).to render_template(:new)
       end
     end

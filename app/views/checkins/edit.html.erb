@@ -1,5 +1,5 @@
-<% if @place %>
-<h1>Check in to this location!</h1>
+<% if @place && @checkin && @checkin.user.id == current_user.id %>
+<h1>Edit your checkin to this location!</h1>
 
 <div>
   <h3><%= @place.name %></h3>
@@ -11,7 +11,6 @@
 <%=  render "checkin_form" %>
 <% else %>
   <% unless flash[:error] %>
-  <%= flash[:notice] %>
+  <h1>The requested place does not exist or you are not allowed access to edit this checkin.</h1>
   <% end %>
 <% end %>
-

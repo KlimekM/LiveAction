@@ -27,17 +27,30 @@ class CheckinsController < ApplicationController
     if @checkin.save
       render "index"
     else
-      flash[:notice] = "There was an error creating the checkin. Please try again."
+      flash[:error] = "The checkin date can not be in the future."
       render  "new"
     end
   end
 
   def edit
-    # Complete functionality to edit a checkin.
+    @user = User.find_by_id(session[:user_id])
+    @place = Place.find_by_id(params[:place_id])
+    @checkin = Checkin.find_by_id(params[:id])
+    if @place && @checkin
+    else
+      @user = User.new
+    end
   end
 
   def update
-    # Complete functionality to update a checkin.
+    @place = Place.find(params[:place_id])
+    @checkin = Checkin.find(params[:id])
+    if @checkin.update(description: params[:checkin][:description], place_id: @place.id, date_attended: Checkin.convert_to_date(params[:checkin]))
+      redirect_to [@place, @checkin]
+    else
+      flash[:error] = "The checkin date can not be in the future."
+      render "edit"
+    end
   end
 
   def show
@@ -49,5 +62,8 @@ class CheckinsController < ApplicationController
     else
       flash[:notice] = "The place or checkin that you requested does not exist."
     end
+  end
+
+  def destroy
   end
 end
