@@ -48,7 +48,7 @@ class CheckinsController < ApplicationController
     if @checkin.update(description: params[:checkin][:description], place_id: @place.id, date_attended: Checkin.convert_to_date(params[:checkin]))
       redirect_to [@place, @checkin]
     else
-      flash[:notice] = "The checkin failed to update."
+      flash[:error] = "The checkin date can not be in the future."
       render "edit"
     end
   end

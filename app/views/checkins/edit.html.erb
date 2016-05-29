@@ -10,5 +10,7 @@
 
 <%=  render "checkin_form" %>
 <% else %>
-<h1>The requested place does not exist or you are not allowed access to edit this checkin.</h1>
+  <% unless flash[:error] %>
+  <h1>The requested place does not exist or you are not allowed access to edit this checkin.</h1>
+  <% end %>
 <% end %>
