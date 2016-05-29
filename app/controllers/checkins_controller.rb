@@ -43,7 +43,14 @@ class CheckinsController < ApplicationController
   end
 
   def update
-    # Complete functionality to update a checkin.
+    @place = Place.find(params[:place_id])
+    @checkin = Checkin.find(params[:id])
+    if @checkin.update(description: params[:checkin][:description], place_id: @place.id, date_attended: Checkin.convert_to_date(params[:checkin]))
+      redirect_to [@place, @checkin]
+    else
+      flash[:notice] = "The checkin failed to update."
+      render "edit"
+    end
   end
 
   def show
