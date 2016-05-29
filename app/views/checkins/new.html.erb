@@ -10,6 +10,8 @@
 
 <%=  render "checkin_form" %>
 <% else %>
+  <% unless flash[:error] %>
   <%= flash[:notice] %>
+  <% end %>
 <% end %>
 

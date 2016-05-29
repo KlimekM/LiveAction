@@ -27,7 +27,7 @@ class CheckinsController < ApplicationController
     if @checkin.save
       render "index"
     else
-      flash[:notice] = "There was an error creating the checkin. Please try again."
+      flash[:error] = "The checkin date can not be in the future."
       render  "new"
     end
   end
