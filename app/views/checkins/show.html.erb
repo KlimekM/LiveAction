@@ -12,6 +12,10 @@
 <div>
   <h3><%= link_to @user.username, user_path(@user) %> checked in on <%= @checkin.date_attended %></h3>
   <h3>Description: <%= @checkin.description %></h3>
+  <% if current_user.id == @user.id %>
+  <%= link_to "Edit this checkin", edit_place_checkin_path(@place, @checkin) %>
+  <%= link_to "Remove this checkin", place_checkin_path(@place, @checkin), method: :delete %>
+  <% end %>
 </div>
 
 <div>

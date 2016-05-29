@@ -33,7 +33,13 @@ class CheckinsController < ApplicationController
   end
 
   def edit
-    # Complete functionality to edit a checkin.
+    @user = User.find_by_id(session[:user_id])
+    @place = Place.find_by_id(params[:place_id])
+    @checkin = Checkin.find_by_id(params[:id])
+    if @place && @checkin
+    else
+      @user = User.new
+    end
   end
 
   def update
@@ -49,5 +55,8 @@ class CheckinsController < ApplicationController
     else
       flash[:notice] = "The place or checkin that you requested does not exist."
     end
+  end
+
+  def destroy
   end
 end
