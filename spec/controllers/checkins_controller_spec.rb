@@ -105,4 +105,16 @@ describe CheckinsController do
       end
     end
   end
+
+  describe "DELETE #destroy" do
+      let(:place) { FactoryGirl.create :place }
+      let(:user) { FactoryGirl.create :user }
+      let(:checkin) { FactoryGirl.build :checkin, place_id: place.id, user_id: user.id }
+    it "finds and deletes the correct instance of Checkin" do
+        session[:user_id] = user.id
+        post :create, place_id: place.id, checkin: { description: checkin.description, place_id: checkin.place_id, "date_attended(1i)"=>"2015", "date_attended(2i)"=>"5", "date_attended(3i)"=>"3" }
+        delete :destroy, id: Checkin.last.id, place_id: place.id
+        expect(Checkin.find_by(id: checkin.id)).to be nil
+    end
+  end
 end
