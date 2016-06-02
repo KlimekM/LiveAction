@@ -65,5 +65,9 @@ class CheckinsController < ApplicationController
   end
 
   def destroy
+    @checkin = Checkin.find_by_id(params[:id])
+    @checkin.destroy
+    @place = @checkin.place
+    redirect_to place_checkins_path(@place)
   end
 end
