@@ -14,7 +14,15 @@ class CommentsController < ApplicationController
   end
 
   def update
-    # Complete functionality to update a comment.
+    @place = Place.find_by_id(params[:place_id])
+    @checkin = Checkin.find_by_id(params[:checkin_id])
+    @comment = Comment.find_by_id(params[:id])
+    if @comment.update(text: params[:comment][:text])
+      redirect_to [@place, @checkin]
+    else
+      flash[:notice] = "The comment can not be blank."
+      render "edit"
+    end
   end
 
   def destroy
