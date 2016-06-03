@@ -8,7 +8,9 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    # Complete functionality to edit a comment.
+    @place = Place.find_by_id(params[:place_id])
+    @checkin = Checkin.find_by_id(params[:checkin_id])
+    @comment = Comment.find_by_id(params[:id])
   end
 
   def update

@@ -31,10 +31,7 @@
     </div>
   <% end %>
 
-  <%= form_for [@place, @checkin, @comment] do |f| %>
-    <%= f.text_area :text %><br/>
-    <%= f.submit "Post Comment" %>
-  <% end %>
+  <%=  render "comments/comment_form" %>
 </div>
 
 <% else %>
