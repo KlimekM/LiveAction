@@ -52,7 +52,9 @@ describe CommentsController do
   end
 
   describe "GET #edit" do
+  end
 
+  describe "PUT #update" do
   end
 
   describe "DELETE #destroy" do
