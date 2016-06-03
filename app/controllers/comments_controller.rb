@@ -15,6 +15,10 @@ class CommentsController < ApplicationController
     @place = Place.find_by_id(params[:place_id])
     @checkin = Checkin.find_by_id(params[:checkin_id])
     @comment = Comment.find_by_id(params[:id])
+    if @place && @checkin && @comment
+    else
+      @user = User.new
+    end
   end
 
   def update

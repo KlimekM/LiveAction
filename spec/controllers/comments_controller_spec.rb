@@ -51,6 +51,10 @@ describe CommentsController do
     end
   end
 
+  describe "GET #edit" do
+
+  end
+
   describe "DELETE #destroy" do
     let(:user) { FactoryGirl.create :user }
     let(:place) { FactoryGirl.create :place_with_checkin }
