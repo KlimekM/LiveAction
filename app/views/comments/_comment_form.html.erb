@@ -1,0 +1,8 @@
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
+<%= form_for [@place, @checkin, @comment] do |f| %>
+<%= f.text_area :text %><br/>
+<%= f.submit %>
+<% end %>

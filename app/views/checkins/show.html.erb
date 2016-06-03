@@ -25,15 +25,13 @@
     <div>
       <p><%= comment.commenter.username %>: <%= comment.text %></p>
       <% if comment.commenter_id == current_user.id %>
+        <%= link_to "Edit this comment", edit_place_checkin_comment_path(@place, @checkin, comment) %>
         <%= button_to "Delete this comment", place_checkin_comment_path(@place, @checkin, comment), method: :delete, params: { id: comment.id } %>
       <% end %>
     </div>
   <% end %>
 
-  <%= form_for [@place, @checkin, @comment] do |f| %>
-    <%= f.text_area :text %><br/>
-    <%= f.submit "Post Comment" %>
-  <% end %>
+  <%=  render "comments/comment_form" %>
 </div>
 
 <% else %>

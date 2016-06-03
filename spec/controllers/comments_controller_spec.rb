@@ -33,8 +33,28 @@ describe CommentsController do
     end
 
     context "when invalid params are passed" do
-      # write test for invalid params when I fix the comments controller to handle invalid params.
+      let(:user) { FactoryGirl.create :user }
+      let(:place) { FactoryGirl.create :place_with_checkin }
+      let(:checkin) { FactoryGirl.create :checkin, place_id: place.id }
+      let(:comment) { FactoryGirl.build :comment, text: ""}
+      it "assigns 'The comment can not be blank.' as a flash[:notice]" do
+        session[:user_id] = user.id
+        post :create, place_id: place.id, checkin_id: checkin.id, comment: { text: comment.text }
+        expect(flash[:notice]).to eq("The comment can not be blank.")
+      end
+
+      it "renders the edit view" do
+        session[:user_id] = user.id
+        post :create, place_id: place.id, checkin_id: checkin.id, comment: { text: comment.text }
+        expect(response).to render_template(:edit)
+      end
     end
+  end
+
+  describe "GET #edit" do
+  end
+
+  describe "PUT #update" do
   end
 
   describe "DELETE #destroy" do

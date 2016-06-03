@@ -1,0 +1,7 @@
+<% if @place && @checkin && @comment && @comment.commenter.id == current_user.id %>
+<h2>Update your comment!</h2>
+
+<%=  render "comment_form" %>
+<% else %>
+  <h1>The requested place, checkin, or comment does not exist or you are not allowed access to edit this comment.</h1>
+<% end %>
