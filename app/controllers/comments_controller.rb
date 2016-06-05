@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
     if @comment.update(text: params[:comment][:text])
       redirect_to [@place, @checkin]
     else
-      flash[:notice] = "The comment can not be blank."
+      flash[:error] = "The comment can not be blank."
       render "edit"
     end
   end

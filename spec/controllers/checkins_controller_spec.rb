@@ -83,6 +83,16 @@ describe CheckinsController do
   end
 
   describe "GET #edit" do
+    let(:place) { FactoryGirl.create :place }
+    let(:user) { FactoryGirl.create :user }
+    let(:checkin) { FactoryGirl.create :checkin, place_id: place.id, user_id: user.id }
+    it "assigns the logged in user, place, and checkin to the correct instance of each model" do
+      session[:user_id] = user.id
+      get :edit, place_id: place.id, id: checkin.id
+      expect(assigns(:user).id).to eq(user.id)
+      expect(assigns(:place).id).to eq(place.id)
+      expect(assigns(:checkin).id).to eq(checkin.id)
+    end
   end
 
   describe "PUT #update" do
