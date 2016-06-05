@@ -86,16 +86,28 @@ describe CheckinsController do
     let(:place) { FactoryGirl.create :place }
     let(:user) { FactoryGirl.create :user }
     let(:checkin) { FactoryGirl.create :checkin, place_id: place.id, user_id: user.id }
-    it "assigns the logged in user, place, and checkin to the correct instance of each model" do
-      session[:user_id] = user.id
-      get :edit, place_id: place.id, id: checkin.id
-      expect(assigns(:user).id).to eq(user.id)
-      expect(assigns(:place).id).to eq(place.id)
-      expect(assigns(:checkin).id).to eq(checkin.id)
+    context "when the logged in user is the creator of the checkin" do
+      it "assigns the logged in user, place, and checkin to the correct instance of each model" do
+        session[:user_id] = user.id
+        get :edit, place_id: place.id, id: checkin.id
+        expect(assigns(:place).id).to eq(place.id)
+        expect(assigns(:checkin).id).to eq(checkin.id)
+        expect(assigns(:user).id).to eq(checkin.user.id)
+      end
+    end
+
+    context "when a user is not the creator of the checkin or is not logged in" do
+      it "assigns @user as an instance of User" do
+        get :edit, place_id: place.id, id: checkin.id
+        expect(assigns(:place).id).to eq(place.id)
+        expect(assigns(:checkin).id).to eq(checkin.id)
+        expect(assigns(:user).id).to be nil
+      end
     end
   end
 
   describe "PUT #update" do
+    # WRITE TESTS HERE
   end
 
   describe "GET #show" do
