@@ -9,8 +9,7 @@ class CheckinsController < ApplicationController
   end
 
   def new
-    @place = Place.find_by_id(params[:place_id])
-    if @place
+    if @place = Place.find_by_id(params[:place_id])
       @checkin = Checkin.new
     else
       flash[:notice] = "The place that you requested does not exist."
@@ -27,16 +26,15 @@ class CheckinsController < ApplicationController
     if @checkin.save
       render "index"
     else
-      flash[:error] = "The checkin date can not be in the future."
+      flash[:notice] = "The checkin date can not be in the future."
       render  "new"
     end
   end
 
   def edit
-    @user = User.find_by_id(session[:user_id])
-    @place = Place.find_by_id(params[:place_id])
     @checkin = Checkin.find_by_id(params[:id])
-    if @place && @checkin
+    @place = Place.find_by_id(params[:place_id])
+    if @user = User.find_by_id(session[:user_id])
     else
       @user = User.new
     end
@@ -48,7 +46,7 @@ class CheckinsController < ApplicationController
     if @checkin.update(description: params[:checkin][:description], place_id: @place.id, date_attended: Checkin.convert_to_date(params[:checkin]))
       redirect_to [@place, @checkin]
     else
-      flash[:error] = "The checkin date can not be in the future."
+      flash[:notice] = "The checkin date can not be in the future."
       render "edit"
     end
   end
@@ -57,7 +55,7 @@ class CheckinsController < ApplicationController
     @comment = Comment.new
     @place = Place.find_by_id(params[:place_id])
     @checkin = Checkin.find_by_id(params[:id])
-    if @place && @checkin
+    if @place != nil && @checkin != nil
       @user = User.find_by_id(@checkin.user_id)
     else
       flash[:notice] = "The place or checkin that you requested does not exist."

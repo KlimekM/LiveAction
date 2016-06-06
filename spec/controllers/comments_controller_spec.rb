@@ -52,9 +52,11 @@ describe CommentsController do
   end
 
   describe "GET #edit" do
+    #DOUBLE CHECK CONTROLLER AND WRITE TESTS HERE
   end
 
   describe "PUT #update" do
+    #DOUBLE CHECK CONTROLLER AND WRITE TESTS HERE
   end
 
   describe "DELETE #destroy" do

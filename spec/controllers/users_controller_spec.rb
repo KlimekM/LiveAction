@@ -61,9 +61,9 @@ describe UsersController do
     end
 
     context "when a user does not exist" do
-      it "assigns @user as an instance of User" do
+      it "assigns @user as a new instance of User" do
         get :edit, id: 50000
-        expect(assigns(:user)).to be_a(User)
+        expect(assigns(:user).id).to be nil
       end
     end
   end
