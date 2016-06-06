@@ -125,9 +125,29 @@ describe CheckinsController do
         put :update, place_id: checkin.place.id, id: checkin.id, checkin: { description: new_description, place_id: checkin.place_id, "date_attended(1i)"=>"2016", "date_attended(2i)"=>"5", "date_attended(3i)"=>"30" }
         expect(assigns(:checkin).description).to eq(new_description)
       end
+
+      it "redirects to the appropriate checkin" do
+        new_description = Faker::Lorem.sentence
+        get :edit, place_id: place.id, id: checkin.id
+        put :update, place_id: checkin.place.id, id: checkin.id, checkin: { description: new_description, place_id: checkin.place_id, "date_attended(1i)"=>"2016", "date_attended(2i)"=>"5", "date_attended(3i)"=>"30" }
+        expect(response).to redirect_to([place, checkin])
+      end
     end
 
     context "when invalid params are passed" do
+      it "assigns 'The checkin date can not be in the future as a flash[:notice]'" do
+        new_description = Faker::Lorem.sentence
+        get :edit, place_id: place.id, id: checkin.id
+        put :update, place_id: checkin.place.id, id: checkin.id, checkin: { description: new_description, place_id: checkin.place_id, "date_attended(1i)"=>"2050", "date_attended(2i)"=>"5", "date_attended(3i)"=>"30" }
+        expect(flash[:notice]).to eq("The checkin date can not be in the future.")
+      end
+
+      it "re-renders the edit page" do
+        new_description = Faker::Lorem.sentence
+        get :edit, place_id: place.id, id: checkin.id
+        put :update, place_id: checkin.place.id, id: checkin.id, checkin: { description: new_description, place_id: checkin.place_id, "date_attended(1i)"=>"2050", "date_attended(2i)"=>"5", "date_attended(3i)"=>"30" }
+        expect(response).to render_template(:edit)
+      end
     end
   end
 
