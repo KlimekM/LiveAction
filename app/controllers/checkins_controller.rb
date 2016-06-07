@@ -1,19 +1,14 @@
 class CheckinsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :place_does_not_exist
+
   def index
-    @place = Place.find_by_id(params[:place_id])
-    if @place
-      @checkins = @place.checkins
-    else
-      flash[:notice] = "The place that you requested does not exist."
-    end
+    @place = Place.find(params[:place_id])
+    @checkins = @place.checkins
   end
 
   def new
-    if @place = Place.find_by_id(params[:place_id])
-      @checkin = Checkin.new
-    else
-      flash[:notice] = "The place that you requested does not exist."
-    end
+    @place = Place.find(params[:place_id])
+    @checkin = Checkin.new
   end
 
   def create
