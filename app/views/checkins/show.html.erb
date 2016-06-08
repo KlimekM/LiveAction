@@ -1,12 +1,11 @@
 <h1>Check-in details</h1>
 
-<% if @place && @checkin %>
-  <%= render "checkins/like", checkin: @checkin %>
+<%= render "checkins/like", checkin: @checkin %>
 <div>
-  <h3><%= @place.name %></h3>
-  <p>Description: <%= @place.description %></p>
-  <p>Address: <%= @place.address %></p>
-  <p>Capacity: <%= @place.capacity %></p>
+  <h3><%= @checkin.place.name %></h3>
+  <p>Description: <%= @checkin.place.description %></p>
+  <p>Address: <%= @checkin.place.address %></p>
+  <p>Capacity: <%= @checkin.place.capacity %></p>
 </div>
 
 <div>
@@ -33,7 +32,3 @@
 
   <%=  render "comments/comment_form" %>
 </div>
-
-<% else %>
-  <%= flash[:notice] %>
-<% end %>
