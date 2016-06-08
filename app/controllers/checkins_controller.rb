@@ -1,13 +1,11 @@
 class CheckinsController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :place_does_not_exist
+  before_action :does_not_exist, only: [:index, :new]
 
   def index
-    @place = Place.find(params[:place_id])
     @checkins = @place.checkins
   end
 
   def new
-    @place = Place.find(params[:place_id])
     @checkin = Checkin.new
   end
 
@@ -63,4 +61,12 @@ class CheckinsController < ApplicationController
     @place = @checkin.place
     redirect_to place_checkins_path(@place)
   end
+
+  private
+
+    def does_not_exist
+      @place = Place.find(params[:place_id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to "/places", notice: "Place not found."
+    end
 end

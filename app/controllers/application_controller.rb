@@ -16,8 +16,4 @@ class ApplicationController < ActionController::Base
   def authorized(creator_id)
     current_user && current_user.id == creator_id
   end
-
-  def does_not_exist
-    redirect_to "/404"
-  end
 end
