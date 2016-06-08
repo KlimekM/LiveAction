@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     current_user != nil
   end
 
-  def authorized(creator_id)
-    current_user && current_user.id == creator_id
+  def authorized(user_id)
+    current_user && current_user.id == user_id
   end
 end

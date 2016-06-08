@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :user_does_not_exist, only: [:edit, :show]
+
   def new
     @user = User.new
   end
@@ -16,9 +18,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if @user = User.find_by_id(params[:id])
+    if authorized(@user.id)
     else
-      @user = User.new
+      redirect_to "/places", notice: "Not authorized to edit this account."
     end
   end
 
@@ -33,10 +35,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   private
+
+  def user_does_not_exist
+    @user = User.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to "/places", notice: "User not found."
+  end
+
   def person_params
     params.require(:user).permit(:first_name, :last_name, :username, :email, :password)
   end
