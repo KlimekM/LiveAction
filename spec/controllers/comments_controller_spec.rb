@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe CommentsController do
+  include SessionsHelper
+
   describe "POST #create" do
     context "when valid params are passed" do
       let(:user) { FactoryGirl.create :user }
@@ -52,7 +54,36 @@ describe CommentsController do
   end
 
   describe "GET #edit" do
-    #DOUBLE CHECK CONTROLLER AND WRITE TESTS HERE
+    let(:place) { FactoryGirl.create :place }
+    let(:user) { FactoryGirl.create :user }
+    let(:checkin) { FactoryGirl.create :checkin, place_id: place.id, user_id: user.id }
+    let(:comment) { FactoryGirl.create :comment, commenter_id: user.id }
+    context "when the author attempts to edit their comment" do
+      it "assigns the place, checkin, and comment as the correct instance of each model" do
+        get :edit, place_id: place.id, checkin_id: checkin.id, id: comment.id
+        expect(assigns(:place).id).to eq(place.id)
+        expect(assigns(:checkin).id).to eq(checkin.id)
+        expect(assigns(:comment).id).to eq(comment.id)
+      end
+
+      it "verifies that the user attempting to edit the comment is the commenter" do
+        simulate_login
+        get :edit, place_id: place.id, checkin_id: checkin.id, id: comment.id
+        expect(assigns(:comment).commenter.id).to eq(current_user.id)
+      end
+    end
+
+    context "when a user who is not the author attempts to edit a comment" do
+      it "assigns 'Not authorized to edit comment. as a flash[:notice]'" do
+        get :edit, place_id: place.id, checkin_id: checkin.id, id: comment.id
+        expect(flash[:notice]).to eq("Not authorized to edit comment.")
+      end
+
+      it "redirects to the places index page" do
+        get :edit, place_id: place.id, checkin_id: checkin.id, id: comment.id
+        expect(response).to redirect_to("/places")
+      end
+    end
   end
 
   describe "PUT #update" do
