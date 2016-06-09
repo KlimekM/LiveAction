@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :place_does_not_exist, :checkin_does_not_exist, :comment_does_not_exist, only: :edit
+
   def create
     @checkin = Checkin.find_by_id(params[:checkin_id])
     @place = @checkin.place
@@ -12,23 +14,20 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @place = Place.find_by_id(params[:place_id])
-    @checkin = Checkin.find_by_id(params[:checkin_id])
-    @comment = Comment.find_by_id(params[:id])
-    if @place && @checkin && @comment
+    if authorized(@comment.commenter.id)
     else
-      @user = User.new
+      redirect_to "/places", notice: "Not authorized to edit comment."
     end
   end
 
   def update
-    @place = Place.find_by_id(params[:place_id])
-    @checkin = Checkin.find_by_id(params[:checkin_id])
-    @comment = Comment.find_by_id(params[:id])
+    @place = Place.find(params[:place_id])
+    @checkin = Checkin.find(params[:checkin_id])
+    @comment = Comment.find(params[:id])
     if @comment.update(text: params[:comment][:text])
       redirect_to [@place, @checkin]
     else
-      flash[:error] = "The comment can not be blank."
+      flash[:notice] = "The comment can not be blank."
       render "edit"
     end
   end
@@ -39,5 +38,25 @@ class CommentsController < ApplicationController
     @checkin = Checkin.find_by_id(params[:checkin_id])
     @place = @checkin.place
     redirect_to [@place, @checkin]
+  end
+
+  private
+
+  def place_does_not_exist
+    @place = Place.find(params[:place_id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to "/places", notice: "Place not found."
+  end
+
+  def checkin_does_not_exist
+    @checkin = Checkin.find(params[:checkin_id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to "/places", notice: "Checkin not found."
+  end
+
+  def comment_does_not_exist
+    @comment = Comment.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to "/places", notice: "Comment not found."
   end
 end
