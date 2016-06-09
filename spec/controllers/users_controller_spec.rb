@@ -53,17 +53,31 @@ describe UsersController do
   end
 
   describe "GET #edit" do
-    context "when a user exists" do
+    context "when the user attempting to edit the profile is authorized" do
       it "assigns @user to the correct instance of User" do
         get :edit, id: user.id
         expect(assigns(:user).id).to eq(user.id)
       end
+
+      it "verifies that the current_user id is equal to the user id" do
+        simulate_login
+        get :edit, id: user.id
+        expect(assigns(:user).id).to eq(current_user.id)
+      end
     end
 
-    context "when a user does not exist" do
-      it "assigns @user as a new instance of User" do
-        get :edit, id: 50000
-        expect(assigns(:user).id).to be nil
+    context "when a user attempts to edit a profile that is not their own" do
+      let(:user_two) { FactoryGirl.create :user }
+      it "assigns 'Not authorized to edit account.' as a flash[:notice]" do
+        simulate_login
+        get :edit, id: user_two.id
+        expect(flash[:notice]).to eq("Not authorized to edit account.")
+      end
+
+      it "redirects to the places index page" do
+        simulate_login
+        get :edit, id: user_two.id
+        expect(response).to redirect_to("/places")
       end
     end
   end
@@ -117,6 +131,18 @@ describe UsersController do
       it "ensures @user has the correct id" do
         get :show, id: user.id
         expect(assigns(:user).id).to eq(user.id)
+      end
+    end
+
+    context "when a user does not exist" do
+      it "assigns 'User not found.' to flash[:notice]" do
+        get :show, id: 50000
+        expect(flash[:notice]).to eq("User not found.")
+      end
+
+      it "redirects to the places index page" do
+        get :show, id: 50000
+        expect(response).to redirect_to("/places")
       end
     end
   end

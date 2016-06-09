@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   def edit
     if authorized(@user.id)
     else
-      redirect_to "/places", notice: "Not authorized to edit this account."
+      redirect_to "/places", notice: "Not authorized to edit account."
     end
   end
 
