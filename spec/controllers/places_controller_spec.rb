@@ -28,6 +28,11 @@ describe PlacesController do
         get :show, id: Faker::Number.number(5)
         expect(flash[:notice]).to eq("Place not found.")
       end
+
+      it "redirects to the places index page" do
+        get :show, id: Faker::Number.number(5)
+        expect(response).to redirect_to("/places")
+      end
     end
   end
 end
