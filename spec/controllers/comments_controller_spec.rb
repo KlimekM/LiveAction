@@ -87,7 +87,34 @@ describe CommentsController do
   end
 
   describe "PUT #update" do
-    #DOUBLE CHECK CONTROLLER AND WRITE TESTS HERE
+    let(:place) { FactoryGirl.create :place }
+    let(:user) { FactoryGirl.create :user }
+    let(:checkin) { FactoryGirl.create :checkin, place_id: place.id, user_id: user.id }
+    let(:comment) { FactoryGirl.create :comment, commenter_id: user.id }
+    context "when valid params are passed" do
+      it "assigns @place, @checkin, and @comment as the correct instance of each model" do
+        new_text = Faker::Lorem.sentence
+        put :update, place_id: place.id, checkin_id: checkin.id, id: comment.id, comment: { text: new_text }
+        expect(assigns(:place).id).to eq(place.id)
+        expect(assigns(:checkin).id).to eq(checkin.id)
+        expect(assigns(:comment).id).to eq(comment.id)
+      end
+
+      it "changes the text of the comment to new_text" do
+        new_text = Faker::Lorem.sentence
+        put :update, place_id: place.id, checkin_id: checkin.id, id: comment.id, comment: { text: new_text }
+        expect(assigns(:comment).text).to eq(new_text)
+      end
+
+      it "redirects to the appropriate checkin" do
+        new_text = Faker::Lorem.sentence
+        put :update, place_id: place.id, checkin_id: checkin.id, id: comment.id, comment: { text: new_text }
+        expect(response).to redirect_to([place, checkin])
+      end
+    end
+
+    context "when invalid params are passed" do
+    end
   end
 
   describe "DELETE #destroy" do
