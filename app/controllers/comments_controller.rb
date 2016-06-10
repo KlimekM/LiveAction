@@ -33,9 +33,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    comment = Comment.find_by_id(params[:id])
+    comment = Comment.find(params[:id])
     comment.destroy
-    @checkin = Checkin.find_by_id(params[:checkin_id])
+    @checkin = Checkin.find(params[:checkin_id])
     @place = @checkin.place
     redirect_to [@place, @checkin]
   end
