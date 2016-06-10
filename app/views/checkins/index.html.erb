@@ -1,4 +1,3 @@
-<% if @place %>
 <h1>Check-ins for <%= @place.name %></h1>
 
 <div>
@@ -17,8 +16,4 @@
     <h3>Description: <%= checkin.description %></h3>
     <%= render "like", checkin: checkin %>
   </div>
-<% end %>
-
-<% else %>
-  <%= flash[:notice] %>
 <% end %>

@@ -1,7 +1,3 @@
-<% if @user.id == current_user.id %>
 <h2> Edit your profile: </h2>
 
 <%=  render "register" %>
-<% else %>
-<h1> You are not authorized to edit this profile. </h1>
-<% end %>

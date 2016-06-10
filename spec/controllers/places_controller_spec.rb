@@ -24,9 +24,14 @@ describe PlacesController do
     end
 
     context "when a place does not exist" do
-      it "assigns 'The place that you requested does not exist.' as a flash[:notice]" do
+      it "assigns 'Place not found.' as a flash[:notice]" do
         get :show, id: Faker::Number.number(5)
-        expect(flash[:notice]).to eq("The place that you requested does not exist.")
+        expect(flash[:notice]).to eq("Place not found.")
+      end
+
+      it "redirects to the places index page" do
+        get :show, id: Faker::Number.number(5)
+        expect(response).to redirect_to("/places")
       end
     end
   end

@@ -1,19 +1,13 @@
 class CheckinsController < ApplicationController
+  before_action :place_does_not_exist, only: [:index, :new, :edit, :show]
+  before_action :checkin_does_not_exist, only: [:edit, :show]
+
   def index
-    @place = Place.find_by_id(params[:place_id])
-    if @place
-      @checkins = @place.checkins
-    else
-      flash[:notice] = "The place that you requested does not exist."
-    end
+    @checkins = @place.checkins
   end
 
   def new
-    if @place = Place.find_by_id(params[:place_id])
-      @checkin = Checkin.new
-    else
-      flash[:notice] = "The place that you requested does not exist."
-    end
+    @checkin = Checkin.new
   end
 
   def create
@@ -32,11 +26,9 @@ class CheckinsController < ApplicationController
   end
 
   def edit
-    @checkin = Checkin.find_by_id(params[:id])
-    @place = Place.find_by_id(params[:place_id])
-    if @user = User.find_by_id(session[:user_id])
+    if authorized(@checkin.user.id) && @checkin.place.id == @place.id
     else
-      @user = User.new
+      redirect_to "/places", notice: "Not authorized to edit this checkin."
     end
   end
 
@@ -53,19 +45,31 @@ class CheckinsController < ApplicationController
 
   def show
     @comment = Comment.new
-    @place = Place.find_by_id(params[:place_id])
-    @checkin = Checkin.find_by_id(params[:id])
-    if @place != nil && @checkin != nil
-      @user = User.find_by_id(@checkin.user_id)
+    @user = User.find(@checkin.user_id)
+    if @place.id == @checkin.place.id
     else
-      flash[:notice] = "The place or checkin that you requested does not exist."
+      redirect_to "/places", notice: "Checkin not found."
     end
   end
 
   def destroy
-    @checkin = Checkin.find_by_id(params[:id])
+    @checkin = Checkin.find(params[:id])
     @checkin.destroy
     @place = @checkin.place
     redirect_to place_checkins_path(@place)
   end
+
+  private
+
+    def place_does_not_exist
+      @place = Place.find(params[:place_id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to "/places", notice: "Place not found."
+    end
+
+    def checkin_does_not_exist
+      @checkin = Checkin.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to "/places", notice: "Checkin not found."
+    end
 end

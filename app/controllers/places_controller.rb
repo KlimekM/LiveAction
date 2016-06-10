@@ -1,13 +1,18 @@
 class PlacesController < ApplicationController
+  before_action :place_does_not_exist, only: :show
+
   def index
     @places = Place.all
   end
 
   def show
-    @place = Place.find_by_id(params[:id])
-    if @place
-    else
-      flash[:notice] = "The place that you requested does not exist."
-    end
+  end
+
+  private
+
+  def place_does_not_exist
+    @place = Place.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to "/places", notice: "Place not found."
   end
 end
