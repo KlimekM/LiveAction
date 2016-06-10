@@ -114,6 +114,15 @@ describe CommentsController do
     end
 
     context "when invalid params are passed" do
+      it "assigns 'The comment can not be blank.' as a flash[:notice]" do
+        put :update, place_id: place.id, checkin_id: checkin.id, id: comment.id, comment: { text: "" }
+        expect(flash[:notice]).to eq("The comment can not be blank.")
+      end
+
+      it "re-renders the edit page" do
+        put :update, place_id: place.id, checkin_id: checkin.id, id: comment.id, comment: { text: "" }
+        expect(response).to render_template(:edit)
+      end
     end
   end
 
