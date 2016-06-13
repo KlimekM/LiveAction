@@ -42,17 +42,24 @@ Place.create!(name: "Quicken Loans Arena", description: "Home of the Cleveland C
 
 Place.create!(name: "Smoothie King Center", description: "Home of the New Orleans Pelicans", address: "1501 Girod Street", city: "New Orleans", state: "Louisiana", capacity: 16867, date_opened: DateTime.new(10, 29, 1999))
 
+Place.create!(name: "Staples Center", description: "Home of the Los Angeles Clippers", address: "1111 South Figueroa Street", city: "Los Angeles", state: "California", capacity: 19060, date_opened: DateTime.new(10, 17, 1999))
 
+Place.create!(name: "Staples Center", description: "Home of the Los Angeles Lakers", address: "1111 South Figueroa Street", city: "Los Angeles", state: "California", capacity: 18997, date_opened: DateTime.new(10, 17, 1999))
 
+Place.create!(name: "Talking Stick Resort Arena", description: "Home of the Phoenix Suns", address: "201 East Jefferson Street", city: "Phoenix", state: "Arizona", capacity: 18055, date_opened: DateTime.new(06, 06, 1992))
 
+Place.create!(name: "Target Center", description: "Home of the Minnesota Timberwolves", address: "600 First Avenue North", city: "Minneapolis", state: "Minnesota", capacity: 19356, date_opened: DateTime.new(10, 13, 1990))
 
+Place.create!(name: "TD Garden", description: "Home of the Boston Celtics", address: "100 Legends Way", city: "Boston", state: "Massachusetts", capacity: 18624, date_opened: DateTime.new(09, 30, 1995))
 
+Place.create!(name: "The Palace of Auburn Hills", description: "Home of the Detroit Pistons", address: "6 Championship Drive", city: "Auburn Hills", state: "Michigan", capacity: 21231, date_opened: DateTime.new(08, 13, 1988))
 
+Place.create!(name: "Time Warner Cable Arena", description: "Home of the Charlotte Hornets", address: "333 East Trade Street", city: "Charlotte", state: "North Carolina", capacity: 19077, date_opened: DateTime.new(10, 21, 2005))
 
+Place.create!(name: "Toyota Center", description: "Home of the Houston Rockets", address: "1510 Polk Street", city: "Houston", state: "Texas", capacity: 18055, date_opened: DateTime.new(10, 06, 2003))
 
+Place.create!(name: "United Center", description: "Home of the Chicago Bulls", address: "1901 West Madison Street", city: "Chicago", state: "Illinois", capacity: 20917, date_opened: DateTime.new(08, 18, 1994))
 
+Place.create!(name: "Verizon Center", description: "Home of the Washington Wizards", address: "601 F Street Northwest", city: "Washington", state: "D.C.", capacity: 20356, date_opened: DateTime.new(12, 02, 1997))
 
-
-Place.create!(name: "United Center", description: "Home of the Chicago Bulls", address: "2000 W Madison Ave", capacity: 20000)
-
-Place.create!(name: "Boston Garden", description: "Home of the Boston Celtics", address: "500 W Green St", capacity: 18000)
+Place.create!(name: "Wells Fargo Center", description: "Home of the Philadelphia 76ers", address: "3601 South Broad Street", city: "Philadelphia", state: "Pennsylvania", capacity: 21600, date_opened: DateTime.new(08, 13, 1996))
