@@ -1,0 +1,36 @@
+body {
+  margin: 0px;
+}
+
+nav {
+  font-family: 'Michroma', sans-serif;
+  background-color: #006bb7;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+nav li:first-child {
+  float: left;
+  font-size: 1.5em;
+  padding: .5em;
+}
+
+nav li {
+  float: right;
+  font-size: 1.5em;
+  padding: .5em;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+nav li:hover {
+  background-color: #f11149;
+}
