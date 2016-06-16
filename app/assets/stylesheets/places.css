@@ -1,3 +1,10 @@
+.places {
+  display: inline-block;
+  text-align: center;
+  width: 33%;
+}
+
+
 .small-photo {
   height: 250px;
   width: 250px;

@@ -1,13 +1,13 @@
-<h1>WELCOME TO LIVE ACTION!</h1>
-
 <% if flash[:notice] %>
   <%= flash[:notice] %>
 <% end %>
 
 <% @places.each do |place| %>
-  <h2><%= link_to place.name, place_checkins_path(place) %><h2>
-  <img class="small-photo" src="<%= place.image_url %>">
-  <p><%= place.description %></p>
-  <p>Address: <%= place.address %></p>
-  <p>Capacity: <%= place.capacity %></p>
+  <div class="places">
+    <h2><%= link_to place.name, place_checkins_path(place) %><h2>
+    <img class="small-photo" src="<%= place.image_url %>">
+    <p><%= place.description %></p>
+    <p>Address: <%= place.address %></p>
+    <p>Capacity: <%= place.capacity %></p>
+  </div>
 <% end %>
