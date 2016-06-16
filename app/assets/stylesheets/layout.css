@@ -35,3 +35,7 @@ nav a {
 nav li:hover {
   background-color: #f11149;
 }
+
+main {
+  margin: 3em;
+}
