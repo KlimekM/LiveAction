@@ -1,5 +1,6 @@
 body {
   margin: 0px;
+  background: url("/hardwood.jpg") no-repeat center center fixed;
 }
 
 nav {
