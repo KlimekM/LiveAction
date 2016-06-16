@@ -5,22 +5,25 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href='https://fonts.googleapis.com/css?family=Michroma' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><%= link_to "Home", root_path %>
-    <% if logged_in? %>
-      <li><%= link_to current_user.username, current_user %></li>
-      <li><%= link_to "Logout", logout_path %></li>
-    <% else %>
-      <li><%= link_to "Register", new_user_path %></li>
-      <li><%= link_to "Login", login_path %></li>
-    <% end %>
-    </ul>
-  </nav>
-
-  <%= yield %>
-
+  <header>
+    <nav>
+      <ul>
+        <li><%= link_to "LiveAction", root_path %>
+        <% if logged_in? %>
+        <li><%= link_to "Logout", logout_path %></li>
+        <li><%= link_to current_user.username, current_user %></li>
+        <% else %>
+        <li><%= link_to "Login", login_path %></li>
+        <li><%= link_to "Register", new_user_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <%= yield %>
+  </main>
 </body>
 </html>
