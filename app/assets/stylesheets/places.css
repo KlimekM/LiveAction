@@ -10,8 +10,6 @@
   color: #006bb7;
 }
 
-
-
 .places a {
   text-decoration: none;
   color: #006bb7;
@@ -26,4 +24,11 @@
   border-radius: 20%;
   height: 250px;
   width: 250px;
+}
+
+.flash-notice {
+  font-size: 24px;
+  color: white;
+  background-color: #f11149;
+  padding: .25em;
 }
