@@ -1,8 +1,8 @@
 <% if flash[:notice] %>
-  <%= flash[:notice] %>
+  <div class="flash-notice"><%= flash[:notice] %></div>
 <% end %>
 
-<%= form_for @user do |f| %>
+<%= form_for @user, :html => {:class => "user-form"} do |f| %>
   <%= f.label :first_name %>:
   <%= f.text_field :first_name %><br/>
 
