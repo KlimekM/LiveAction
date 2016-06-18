@@ -1,0 +1,26 @@
+.page-header {
+  font-size: 48px;
+  color: white;
+  text-align: center;
+}
+
+.user-form {
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+  width: 60%;
+}
+
+.user-form input {
+  display: inline-block;
+  width: 60%;
+  font-size: 24px;
+  padding: 1%;
+  border-radius: 5%;
+  margin-top: 2%;
+}
+
+.user-form input[type=submit] {
+  background-color: #006bb7;
+  color: white;
+}
