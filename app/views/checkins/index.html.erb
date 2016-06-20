@@ -1,10 +1,13 @@
-<h1>Check-ins for <%= @place.name %></h1>
+<h1 class="page-header"><%= @place.name %> Check-ins</h1>
 
-<div>
-  <h3><%= @place.name %></h3>
-  <p>Description: <%= @place.description %></p>
-  <p>Address: <%= @place.address %></p>
-  <p>Capacity: <%= @place.capacity %></p>
+<div class="details-container">
+  <img class="detail-photo" src="<%= @place.image_url %>">
+  <div class="place-details">
+    <p><%= @place.description %></p>
+    <p><%= @place.address %></p>
+    <p><%= @place.city %>, <%= @place.state %></p>
+    <p>Capacity: <%= @place.capacity %></p>
+  </div>
 </div>
 
 <% if logged_in? %>
