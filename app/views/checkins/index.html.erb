@@ -7,7 +7,9 @@
   <p>Capacity: <%= @place.capacity %></p>
 </div>
 
+<% if logged_in? %>
 <h2><%= link_to "Check-in to this location!", new_place_checkin_path(@place) %><h2>
+<% end %>
 
 <% @checkins.each do |checkin| %>
   <div>
