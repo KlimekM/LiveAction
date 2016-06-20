@@ -25,12 +25,22 @@
 
 .checkin-button {
   color: white;
-  background-color: blue;
+  background-color: #f1b310;
   text-decoration: none;
   text-align: center;
   display: block;
   width: 50%;
   margin: 0 auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 48px;
+  padding: 10px;
+  border-radius: 2.5%;
+}
+
+.checkin-button:hover {
+  color: white;
+  background-color: #f11149;
 }
 
 .checkin-container {
@@ -38,9 +48,37 @@
   text-align: center;
   width: 33%;
   margin-top: 1em;
-  margin-bottom: 3em;
-  height: 50%;
+  margin-bottom: 2em;
   background-color: white;
   border-radius: 10%;
   color: #006bb7;
+  vertical-align: top;
+  padding-bottom: 10px;
+}
+
+.checkin-show-link {
+  color: white;
+  background-color: #f1b310;
+  text-decoration: none;
+  display: block;
+}
+
+.checkin-show-link:hover {
+  color: white;
+  background-color: #f11149;
+}
+
+.user-show-link {
+  color: #f11149;
+  text-decoration: none;
+}
+
+.like-button {
+  color: white;
+  background-color: #f1b310;
+  text-decoration: none;
+}
+
+.like-button:hover {
+  cursor: pointer;
 }
