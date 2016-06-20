@@ -22,3 +22,25 @@
 .place-details p {
   margin: .4em 0 0;
 }
+
+.checkin-button {
+  color: white;
+  background-color: blue;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.checkin-container {
+  display: inline-block;
+  text-align: center;
+  width: 33%;
+  margin-top: 1em;
+  margin-bottom: 3em;
+  height: 50%;
+  background-color: white;
+  border-radius: 10%;
+  color: #006bb7;
+}

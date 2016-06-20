@@ -11,11 +11,11 @@
 </div>
 
 <% if logged_in? %>
-<h2><%= link_to "Check-in to this location!", new_place_checkin_path(@place) %><h2>
+<%= link_to "Check-in to this location!", new_place_checkin_path(@place), class: "checkin-button" %>
 <% end %>
 
 <% @checkins.each do |checkin| %>
-  <div>
+  <div class="checkin-container">
     <h3><%= link_to "Check-in #{checkin.id}", "/places/#{@place.id}/checkins/#{checkin.id}" %></h3>
     <h3><%= link_to checkin.user.username, user_path(checkin.user) %> checked in on <%= checkin.date_attended %></h3>
     <h3>Description: <%= checkin.description %></h3>
