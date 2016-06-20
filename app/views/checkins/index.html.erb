@@ -1,18 +1,23 @@
-<h1>Check-ins for <%= @place.name %></h1>
+<h1 class="page-header"><%= @place.name %> Check-ins</h1>
 
-<div>
-  <h3><%= @place.name %></h3>
-  <p>Description: <%= @place.description %></p>
-  <p>Address: <%= @place.address %></p>
-  <p>Capacity: <%= @place.capacity %></p>
+<div class="details-container">
+  <img class="detail-photo" src="<%= @place.image_url %>">
+  <div class="place-details">
+    <p><%= @place.description %></p>
+    <p><%= @place.address %></p>
+    <p><%= @place.city %>, <%= @place.state %></p>
+    <p>Capacity: <%= @place.capacity %></p>
+  </div>
 </div>
 
-<h2><%= link_to "Check-in to this location!", new_place_checkin_path(@place) %><h2>
+<% if logged_in? %>
+<%= link_to "Check-in to this location!", new_place_checkin_path(@place), class: "checkin-button" %>
+<% end %>
 
 <% @checkins.each do |checkin| %>
-  <div>
-    <h3><%= link_to "Check-in #{checkin.id}", "/places/#{@place.id}/checkins/#{checkin.id}" %></h3>
-    <h3><%= link_to checkin.user.username, user_path(checkin.user) %> checked in on <%= checkin.date_attended %></h3>
+  <div class="checkin-container">
+    <h3><%= link_to "Check-in #{checkin.id}", "/places/#{@place.id}/checkins/#{checkin.id}", class: "checkin-show-link" %></h3>
+    <h3><%= link_to checkin.user.username, user_path(checkin.user), class: "user-show-link" %> checked in on <%= checkin.date_attended %></h3>
     <h3>Description: <%= checkin.description %></h3>
     <%= render "like", checkin: checkin %>
   </div>
