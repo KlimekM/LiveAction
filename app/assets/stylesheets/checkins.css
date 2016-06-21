@@ -7,7 +7,7 @@
 .detail-photo {
   width: 45%;
   height: 250px;
-  border-radius: 5%
+  border-radius: 5%;
 }
 
 .place-details {
@@ -81,4 +81,42 @@
 
 .like-button:hover {
   cursor: pointer;
+}
+
+.checkin-form {
+  text-align: center;
+  margin: 0 auto;
+  color: white;
+  width: 60%;
+}
+
+.checkin-form textarea {
+  width: 80%;
+  height: 100px;
+  font-size: 24px;
+  padding: 1%;
+  border-radius: 5%;
+  margin-top: 2%;
+}
+
+.checkin-form select {
+  font-size: 24px;
+  padding: 1%;
+  margin-top: 2%;
+  border-radius: 5%;
+}
+
+.checkin-form input[type=submit] {
+  background-color: #006bb7;
+  color: white;
+  width: 60%;
+  font-size: 24px;
+  padding: 1%;
+  border-radius: 5%;
+  margin-top: 2%;
+}
+
+.checkin-form input[type=submit]:hover {
+  cursor: pointer;
+  background-color: #f11149;
 }
