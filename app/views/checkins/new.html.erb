@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+  <div class="flash-notice"><%= flash[:notice] %></div>
+<% end %>
+
 <h1 class="page-header">Check in to <%= @place.name %></h1>
 
 <div class="details-container">
@@ -9,6 +13,7 @@
     <p>Capacity: <%= @place.capacity %></p>
   </div>
 </div>
+
 
 <div>
   <%=  render "checkin_form" %>
