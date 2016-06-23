@@ -4,7 +4,7 @@
 
 <% @places.each do |place| %>
   <div class="places">
-    <h3><%= link_to place.name, place_checkins_path(place) %><h3>
+    <h3><%= link_to place.name, place_checkins_path(place) %></h3>
     <img class="small-photo" src="<%= place.image_url %>">
     <p><%= place.description %></p>
     <p><%= place.address %></p>

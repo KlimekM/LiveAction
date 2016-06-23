@@ -10,20 +10,22 @@
   </div>
 </div>
 
-<div class="checkin-details-container">
-  <%= render "checkins/like", checkin: @checkin %>
-  <h3><%= link_to @user.username, user_path(@user) %> checked in on <%= @checkin.date_attended %></h3>
-  <h3>Description: <%= @checkin.description %></h3>
-  <% if logged_in? && @checkin.creator?(current_user) %>
-  <%= link_to "Edit this checkin", edit_place_checkin_path(@place, @checkin) %>
-  <%= link_to "Remove this checkin", place_checkin_path(@place, @checkin), method: :delete %>
-  <% end %>
+<div class="checkin-info-container">
+  <div class="checkin-details">
+    <p><%= link_to @user.username, user_path(@user), class: "user-show-link" %> checked in on <%= @checkin.date_attended %></p>
+    <p>Description: <%= @checkin.description %></p>
+    <% if logged_in? && @checkin.creator?(current_user) %>
+    <%= link_to "Edit this checkin", edit_place_checkin_path(@place, @checkin), class: "checkin-creator-link" %>
+    <%= link_to "Remove this checkin", place_checkin_path(@place, @checkin), method: :delete, class: "checkin-creator-link" %>
+    <% end %>
+    <p><%= @checkin.likes.count %> people like this.</p>
+    <%= render "checkins/like", checkin: @checkin %>
+  </div>
 
-  <div>
-    <h4>Likes and comments</h4>
-    <p><%= @checkin.likes.count %> people liked this.</p>
+  <div class="comments-container">
+    <h3>Comments:</h3>
     <% @checkin.comments.each do |comment| %>
-      <div>
+      <div class="comment">
         <p><%= comment.commenter.username %>: <%= comment.text %></p>
         <% if logged_in? && comment.comment_author?(current_user) %>
           <%= link_to "Edit this comment", edit_place_checkin_comment_path(@place, @checkin, comment) %>

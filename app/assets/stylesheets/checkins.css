@@ -121,9 +121,45 @@
   background-color: #f11149;
 }
 
-.checkin-details-container {
+.checkin-info-container {
   margin: 0 auto;
   margin-top: 2%;
   width: 90%;
   text-align: center;
+}
+
+.checkin-details {
+  background-color: white;
+  border-radius: 10%;
+  color: #006bb7;
+  padding: 10px 0;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.checkin-creator-link {
+  color: #f11149;
+  text-decoration: none;
+}
+
+.checkin-creator-link:hover {
+  background-color: #f11149;
+  color: white;
+  text-decoration: none;
+}
+
+.comments-container {
+  background-color: white;
+  border-radius: 10%;
+  color: #006bb7;
+  padding: 10px 0;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.comment {
+  border-top: 1px solid #006bb7;
+  border-bottom: 1px solid #006bb7;
+  margin: 1px 0;
 }
