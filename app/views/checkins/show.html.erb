@@ -26,7 +26,7 @@
     <h3>Comments:</h3>
     <% @checkin.comments.each do |comment| %>
       <div class="comment">
-        <p><%= comment.commenter.username %>: <%= comment.text %></p>
+        <p><%= link_to comment.commenter.username, user_path(comment.commenter), class: "user-show-link" %>: <%= comment.text %></p>
         <% if logged_in? && comment.comment_author?(current_user) %>
           <%= link_to "Edit this comment", edit_place_checkin_comment_path(@place, @checkin, comment) %>
           <%= button_to "Delete this comment", place_checkin_comment_path(@place, @checkin, comment), method: :delete, params: { id: comment.id } %>

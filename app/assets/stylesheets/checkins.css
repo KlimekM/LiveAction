@@ -163,3 +163,21 @@
   border-bottom: 1px solid #006bb7;
   margin: 1px 0;
 }
+
+.comment-form textarea {
+  width: 80%;
+  height: 50px;
+  font-size: 12px;
+  padding: 1%;
+  border-radius: 5%;
+  margin: 1%;
+}
+
+.comment-form input[type=submit] {
+  background-color: #006bb7;
+  color: white;
+  width: 60%;
+  font-size: 12px;
+  padding: 1%;
+  border-radius: 5%;
+}
