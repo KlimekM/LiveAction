@@ -10,7 +10,7 @@
     <p><%= @place.description %></p>
     <p><%= @place.address %></p>
     <p><%= @place.city %>, <%= @place.state %></p>
-    <p>Capacity: <%= @place.capacity %></p>
+    <p>Capacity: <%= number_with_delimiter(@place.capacity, delimiter: ",") %></p>
   </div>
 </div>
 
