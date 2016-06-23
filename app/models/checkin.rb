@@ -15,4 +15,8 @@ class Checkin < ActiveRecord::Base
       errors.add(:date_attended, "can't be in the future")
     end
   end
+
+  def creator?(current_user)
+    self.user.id == current_user.id
+  end
 end
