@@ -54,6 +54,7 @@
   color: #006bb7;
   vertical-align: top;
   padding-bottom: 10px;
+  font-size: 18px;
 }
 
 .checkin-show-link {
@@ -129,6 +130,10 @@
   text-align: center;
 }
 
+.checkin-info-container p {
+  font-size: 18px;
+}
+
 .checkin-details {
   background-color: white;
   border-radius: 10%;
@@ -175,9 +180,9 @@
 }
 
 .comment-form textarea {
-  width: 80%;
-  height: 50px;
-  font-size: 12px;
+  width: 100%;
+  height: 60px;
+  font-size: 18px;
   padding: 1%;
   border-radius: 5%;
   margin: 1%;
@@ -187,7 +192,7 @@
   background-color: #006bb7;
   color: white;
   width: 60%;
-  font-size: 12px;
+  font-size: 18px;
   padding: 1%;
   border-radius: 5%;
 }
