@@ -29,7 +29,7 @@
         <p><%= link_to comment.commenter.username, user_path(comment.commenter), class: "user-show-link" %>: <%= comment.text %></p>
         <% if logged_in? && comment.comment_author?(current_user) %>
           <%= link_to "Edit comment", edit_place_checkin_comment_path(@place, @checkin, comment), class: "comment-edit-link" %>
-          <%= button_to "Delete comment", place_checkin_comment_path(@place, @checkin, comment), method: :delete, params: { id: comment.id }, class: "comment-delete-link" %>
+          <%= button_to "Delete comment", place_checkin_comment_path(@place, @checkin, comment), method: :delete, params: { id: comment.id }, form_class: "comment-delete-link" %>
         <% end %>
       </div>
     <% end %>
