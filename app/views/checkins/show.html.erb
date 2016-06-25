@@ -15,8 +15,8 @@
     <p><%= link_to @user.username, user_path(@user), class: "user-show-link" %> checked in on <%= @checkin.date_attended %></p>
     <p>Description: <%= @checkin.description %></p>
     <% if logged_in? && @checkin.creator?(current_user) %>
-    <%= link_to "Edit this checkin", edit_place_checkin_path(@place, @checkin), class: "checkin-creator-link" %>
-    <%= link_to "Remove this checkin", place_checkin_path(@place, @checkin), method: :delete, class: "checkin-creator-link" %>
+    <%= link_to "Edit checkin", edit_place_checkin_path(@place, @checkin), class: "checkin-creator-link" %>
+    <%= link_to "Remove checkin", place_checkin_path(@place, @checkin), method: :delete, class: "checkin-creator-link" %>
     <% end %>
     <p><%= @checkin.likes.count %> people like this.</p>
     <%= render "checkins/like", checkin: @checkin %>
@@ -28,8 +28,8 @@
       <div class="comment">
         <p><%= link_to comment.commenter.username, user_path(comment.commenter), class: "user-show-link" %>: <%= comment.text %></p>
         <% if logged_in? && comment.comment_author?(current_user) %>
-          <%= link_to "Edit this comment", edit_place_checkin_comment_path(@place, @checkin, comment) %>
-          <%= button_to "Delete this comment", place_checkin_comment_path(@place, @checkin, comment), method: :delete, params: { id: comment.id } %>
+          <%= link_to "Edit comment", edit_place_checkin_comment_path(@place, @checkin, comment), class: "comment-edit-link" %>
+          <%= button_to "Delete comment", place_checkin_comment_path(@place, @checkin, comment), method: :delete, params: { id: comment.id }, class: "comment-delete-link" %>
         <% end %>
       </div>
     <% end %>

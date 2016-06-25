@@ -188,3 +188,20 @@
   padding: 1%;
   border-radius: 5%;
 }
+
+.comment-edit-link {
+  background-color: #f11149;
+  color: white;
+  text-decoration: none;
+  padding: 2px;
+  display: inline-block;
+}
+
+.comment-delete-link {
+  background-color: #f11149;
+  color: white;
+  text-decoration: none;
+  padding: 2px;
+  display: inline-block;
+  box-shadow: none;
+}
