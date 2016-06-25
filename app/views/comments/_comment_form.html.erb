@@ -1,8 +1,8 @@
 <% if flash[:notice] %>
-  <%= flash[:notice] %>
+  <div class="flash-notice"><%= flash[:notice] %></div>
 <% end %>
 
-<%= form_for [@place, @checkin, @comment] do |f| %>
-<%= f.text_area :text %><br/>
+<%= form_for [@place, @checkin, @comment], :html => {:class => "comment-form"} do |f| %>
+<%= f.text_area :text, placeholder: "Comment on this check-in..." %><br/>
 <%= f.submit %>
 <% end %>

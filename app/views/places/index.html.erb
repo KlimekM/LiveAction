@@ -4,11 +4,11 @@
 
 <% @places.each do |place| %>
   <div class="places">
-    <h3><%= link_to place.name, place_checkins_path(place) %><h3>
+    <h3><%= link_to place.name, place_checkins_path(place) %></h3>
     <img class="small-photo" src="<%= place.image_url %>">
     <p><%= place.description %></p>
     <p><%= place.address %></p>
     <p><%= place.city %>, <%= place.state %></p>
-    <p>Capacity: <%= place.capacity %></p>
+    <p>Capacity: <%= number_with_delimiter(place.capacity, delimiter: ",") %></p>
   </div>
 <% end %>

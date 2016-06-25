@@ -1,34 +1,40 @@
-<h1>Check-in details</h1>
+<h1 class="page-header">Check-in details</h1>
 
-<%= render "checkins/like", checkin: @checkin %>
-<div>
-  <h3><%= @checkin.place.name %></h3>
-  <p>Description: <%= @checkin.place.description %></p>
-  <p>Address: <%= @checkin.place.address %></p>
-  <p>Capacity: <%= @checkin.place.capacity %></p>
+<div class="details-container">
+  <img class="detail-photo" src="<%= @checkin.place.image_url %>">
+  <div class="place-details">
+    <p><%= @checkin.place.description %></p>
+    <p><%= @checkin.place.address %></p>
+    <p><%= @checkin.place.city %>, <%= @checkin.place.state %></p>
+    <p>Capacity: <%= number_with_delimiter(@checkin.place.capacity, delimiter: ",") %></p>
+  </div>
 </div>
 
-<div>
-  <h3><%= link_to @user.username, user_path(@user) %> checked in on <%= @checkin.date_attended %></h3>
-  <h3>Description: <%= @checkin.description %></h3>
-  <% if current_user.id == @user.id %>
-  <%= link_to "Edit this checkin", edit_place_checkin_path(@place, @checkin) %>
-  <%= link_to "Remove this checkin", place_checkin_path(@place, @checkin), method: :delete %>
-  <% end %>
+<div class="checkin-info-container">
+  <div class="checkin-details">
+    <p><%= link_to @user.username, user_path(@user), class: "user-show-link" %> checked in on <%= @checkin.date_attended %></p>
+    <p>Description: <%= @checkin.description %></p>
+    <% if logged_in? && @checkin.creator?(current_user) %>
+    <%= link_to "Edit checkin", edit_place_checkin_path(@place, @checkin), class: "checkin-creator-link" %>
+    <%= link_to "Remove checkin", place_checkin_path(@place, @checkin), method: :delete, class: "checkin-creator-link" %>
+    <% end %>
+    <p><%= @checkin.likes.count %> people like this.</p>
+    <%= render "checkins/like", checkin: @checkin %>
+  </div>
+
+  <div class="comments-container">
+    <h3>Comments:</h3>
+    <% @checkin.comments.each do |comment| %>
+      <div class="comment">
+        <p><%= link_to comment.commenter.username, user_path(comment.commenter), class: "user-show-link" %>: <%= comment.text %></p>
+        <% if logged_in? && comment.comment_author?(current_user) %>
+          <%= link_to "Edit comment", edit_place_checkin_comment_path(@place, @checkin, comment), class: "comment-edit-link" %>
+          <%= button_to "Delete comment", place_checkin_comment_path(@place, @checkin, comment), method: :delete, params: { id: comment.id }, form_class: "comment-delete-link" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%=  render "comments/comment_form" %>
+  </div>
 </div>
 
-<div>
-  <h4>Likes and comments</h4>
-  <p><%= @checkin.likes.count %> people liked this.</p>
-  <% @checkin.comments.each do |comment| %>
-    <div>
-      <p><%= comment.commenter.username %>: <%= comment.text %></p>
-      <% if comment.commenter_id == current_user.id %>
-        <%= link_to "Edit this comment", edit_place_checkin_comment_path(@place, @checkin, comment) %>
-        <%= button_to "Delete this comment", place_checkin_comment_path(@place, @checkin, comment), method: :delete, params: { id: comment.id } %>
-      <% end %>
-    </div>
-  <% end %>
-
-  <%=  render "comments/comment_form" %>
-</div>

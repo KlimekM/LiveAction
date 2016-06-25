@@ -6,8 +6,7 @@
     <p><%= @place.description %></p>
     <p><%= @place.address %></p>
     <p><%= @place.city %>, <%= @place.state %></p>
-    <p>Capacity: <%= @place.capacity %></p>
-  </div>
+    <p>Capacity: <%= number_with_delimiter(@place.capacity, delimiter: ",") %></p>  </div>
 </div>
 
 <% if logged_in? %>
@@ -17,8 +16,8 @@
 <% @checkins.each do |checkin| %>
   <div class="checkin-container">
     <h3><%= link_to "Check-in #{checkin.id}", "/places/#{@place.id}/checkins/#{checkin.id}", class: "checkin-show-link" %></h3>
-    <h3><%= link_to checkin.user.username, user_path(checkin.user), class: "user-show-link" %> checked in on <%= checkin.date_attended %></h3>
-    <h3>Description: <%= checkin.description %></h3>
+    <p><%= link_to checkin.user.username, user_path(checkin.user), class: "user-show-link" %> checked in on <%= checkin.date_attended %></p>
+    <p>Description: <%= checkin.description %></p>
     <%= render "like", checkin: checkin %>
   </div>
 <% end %>

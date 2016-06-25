@@ -24,3 +24,8 @@
   background-color: #006bb7;
   color: white;
 }
+
+.user-form input[type=submit]:hover {
+  cursor: pointer;
+  background-color: #f11149;
+}

@@ -7,7 +7,7 @@
 .detail-photo {
   width: 45%;
   height: 250px;
-  border-radius: 5%
+  border-radius: 5%;
 }
 
 .place-details {
@@ -54,6 +54,7 @@
   color: #006bb7;
   vertical-align: top;
   padding-bottom: 10px;
+  font-size: 18px;
 }
 
 .checkin-show-link {
@@ -77,8 +78,147 @@
   color: white;
   background-color: #f1b310;
   text-decoration: none;
+  font-size: 12px;
 }
 
 .like-button:hover {
   cursor: pointer;
+}
+
+.checkin-form {
+  text-align: center;
+  margin: 0 auto;
+  color: white;
+  width: 60%;
+}
+
+.checkin-form textarea {
+  width: 80%;
+  height: 100px;
+  font-size: 24px;
+  padding: 1%;
+  border-radius: 5%;
+  margin-top: 2%;
+}
+
+.checkin-form select {
+  font-size: 24px;
+  padding: 1%;
+  margin-top: 2%;
+  border-radius: 5%;
+}
+
+.checkin-form input[type=submit] {
+  background-color: #006bb7;
+  color: white;
+  width: 60%;
+  font-size: 24px;
+  padding: 1%;
+  border-radius: 5%;
+  margin-top: 2%;
+}
+
+.checkin-form input[type=submit]:hover {
+  cursor: pointer;
+  background-color: #f11149;
+}
+
+.checkin-info-container {
+  margin: 0 auto;
+  margin-top: 2%;
+  width: 90%;
+  text-align: center;
+}
+
+.checkin-info-container p {
+  font-size: 18px;
+}
+
+.checkin-details {
+  background-color: white;
+  border-radius: 10%;
+  color: #006bb7;
+  padding: 10px 0;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.checkin-creator-link {
+  background-color: #f11149;
+  color: white;
+  line-height: 25px;
+  width: 125px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.checkin-creator-link:hover {
+  text-decoration: none;
+}
+
+.comments-container {
+  background-color: white;
+  border-radius: 10%;
+  color: #006bb7;
+  padding: 10px 0;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.comment {
+  border-top: 1px solid #006bb7;
+  border-bottom: 1px solid #006bb7;
+  margin: 1px 0;
+}
+
+.comment-form {
+  text-align: center;
+  margin: 0 auto;
+  color: white;
+  width: 60%;
+}
+
+.comment-form textarea {
+  width: 100%;
+  height: 60px;
+  font-size: 18px;
+  padding: 1%;
+  border-radius: 5%;
+  margin: 1%;
+}
+
+.comment-form input[type=submit] {
+  background-color: #006bb7;
+  color: white;
+  width: 60%;
+  font-size: 18px;
+  padding: 1%;
+  border-radius: 5%;
+}
+
+.comment-edit-link {
+  background-color: #f11149;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 25px;
+  width: 125px;
+}
+
+.comment-delete-link {
+  display: inline-block;
+  padding: none;
+}
+
+.comment-delete-link input[type=submit] {
+  background-color: #f11149;
+  color: white;
+  box-shadow: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  height: 25px;
+  width: 125px;
+  margin-bottom: 5px;
 }

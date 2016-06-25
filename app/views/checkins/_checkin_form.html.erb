@@ -1,6 +1,5 @@
-<%= form_for [@place, @checkin] do |f| %>
-  <%= f.label :description %>:</br>
-  <%= f.text_area :description %></br>
+<%= form_for [@place, @checkin], :html => {:class => "checkin-form"} do |f| %>
+  <%= f.text_area :description, placeholder: "Check-in description..."%></br>
 
   <%= f.date_select :date_attended, order: [:month, :day, :year] %></br>
 
