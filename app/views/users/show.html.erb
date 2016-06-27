@@ -1,7 +1,9 @@
+<h1 class="page-header"><%= @user.username %>'s checkins:</h1>
+
 <div class="user-info">
-  <h2><%= @user.username %></h2>
+  <h1 class="username"><%= @user.username %></h1>
   <% if logged_in? && current_user.own_profile?(@user) %>
-    <%= link_to "Edit Profile", edit_user_path(@user) %>
+    <%= link_to "Edit Profile", edit_user_path(@user), class: "user-edit-link" %>
   <% end %>
 
   <% if logged_in? && !current_user.own_profile?(@user) && current_user.already_friends?(@user) %>
@@ -11,18 +13,23 @@
   <% end %>
 
   <div>
-    <h2>Friends</h2>
+    <h1 class="friends-header">Friends</h1>
     <% @user.friends.each do |friend| %>
-      <%= link_to friend.username, user_path(friend) %>
+      <%= link_to friend.username, user_path(friend), class: "friend-link" %>
     <% end %>
   </div>
 </div>
 
 <div class="user-checkins">
-  <h3>User checkins:</h3>
   <% @user.checkins.each do |checkin| %>
-    <h4><%= link_to checkin.place.name, "/places/#{checkin.place.id}/checkins/#{checkin.id}" %></h4>
-    <p>Checked in on: <%= checkin.date_attended %></p>
-    <p>Checkin description: <%= checkin.description %></p>
+    <div class="user-checkin-container">
+      <h3><%= link_to checkin.place.name, "/places/#{checkin.place.id}/checkins/#{checkin.id}", class: "checkin-show-link" %></h3>
+      <p>Checked in on: <%= checkin.date_attended %></p>
+      <p>Description: <%= checkin.description %></p>
+      <% if logged_in? && checkin.creator?(current_user) %>
+        <%= link_to "Edit checkin", edit_place_checkin_path(checkin.place, checkin), class: "checkin-creator-link" %>
+        <%= link_to "Remove checkin", place_checkin_path(checkin.place, checkin), method: :delete, class: "checkin-creator-link" %>
+      <% end %>
+    </div>
   <% end %>
 </div>
