@@ -1,5 +1,4 @@
-<!-- Change logic in user methods -->
-<div>
+<div class="user-info">
   <h2><%= @user.username %></h2>
   <% if logged_in? && current_user.own_profile?(@user) %>
     <%= link_to "Edit Profile", edit_user_path(@user) %>
@@ -19,9 +18,11 @@
   </div>
 </div>
 
-<h3>User checkins:</h3>
-<% @user.checkins.each do |checkin| %>
-  <h4><%= link_to checkin.place.name, "/places/#{checkin.place.id}/checkins/#{checkin.id}" %></h4>
-  <p>Checked in on: <%= checkin.date_attended %></p>
-  <p>Checkin description: <%= checkin.description %></p>
-<% end %>
+<div class="user-checkins">
+  <h3>User checkins:</h3>
+  <% @user.checkins.each do |checkin| %>
+    <h4><%= link_to checkin.place.name, "/places/#{checkin.place.id}/checkins/#{checkin.id}" %></h4>
+    <p>Checked in on: <%= checkin.date_attended %></p>
+    <p>Checkin description: <%= checkin.description %></p>
+  <% end %>
+</div>
