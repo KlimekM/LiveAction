@@ -13,7 +13,9 @@
 
   <div>
     <h2>Friends</h2>
-    <!-- List user friends -->
+    <% @user.friends.each do |friend| %>
+      <%= link_to friend.username, user_path(friend) %>
+    <% end %>
   </div>
 </div>
 
