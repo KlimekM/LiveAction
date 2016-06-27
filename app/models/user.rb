@@ -8,4 +8,12 @@ class User < ActiveRecord::Base
 
   validates :username, :first_name, :last_name, :email, { presence: true}
   has_secure_password
+
+  def own_profile?(user)
+    self.id == user.id
+  end
+
+  def already_friends?(user)
+    self.friends.include?(user)
+  end
 end

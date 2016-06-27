@@ -1,20 +1,35 @@
-<h1>Welcome to your profile page!</h1>
+<h1 class="page-header"><%= @user.username %>'s checkins:</h1>
 
-<h2><%= @user.username %></h2>
-<% if @user.id == current_user.id %>
-<%= link_to "Edit Profile", edit_user_path(@user) %>
-<% end %>
+<div class="user-info">
+  <h1 class="username"><%= @user.username %></h1>
+  <% if logged_in? && current_user.own_profile?(@user) %>
+    <%= link_to "Edit Profile", edit_user_path(@user), class: "user-edit-link" %>
+  <% end %>
 
-<% if @user.id != current_user.id && current_user.friends.include?(@user) %>
-<%= link_to "Remove Friend", friendship_path(id: @user.id), method: :delete %>
+  <% if logged_in? && !current_user.own_profile?(@user) && current_user.already_friends?(@user) %>
+    <%= link_to "Remove Friend", friendship_path(id: @user.id), method: :delete %>
+  <% elsif logged_in? && !current_user.own_profile?(@user) %>
+    <%= link_to "Add Friend", friendships_path(id: @user.id), method: :post %>
+  <% end %>
 
-<% elsif @user.id != current_user.id %>
-<%= link_to "Add Friend", friendships_path(id: @user.id), method: :post %>
-<% end %>
+  <div>
+    <h1 class="friends-header">Friends</h1>
+    <% @user.friends.each do |friend| %>
+      <%= link_to friend.username, user_path(friend), class: "friend-link" %>
+    <% end %>
+  </div>
+</div>
 
-<h3>User checkins:</h3>
-<% @user.checkins.each do |checkin| %>
-  <h4><%= link_to checkin.place.name, "/places/#{checkin.place.id}/checkins/#{checkin.id}" %></h4>
-  <p>Checked in on: <%= checkin.date_attended %></p>
-  <p>Checkin description: <%= checkin.description %></p>
-<% end %>
+<div class="user-checkins">
+  <% @user.checkins.each do |checkin| %>
+    <div class="user-checkin-container">
+      <h3><%= link_to checkin.place.name, "/places/#{checkin.place.id}/checkins/#{checkin.id}", class: "checkin-show-link" %></h3>
+      <p>Checked in on: <%= checkin.date_attended %></p>
+      <p>Description: <%= checkin.description %></p>
+      <% if logged_in? && checkin.creator?(current_user) %>
+        <%= link_to "Edit checkin", edit_place_checkin_path(checkin.place, checkin), class: "checkin-creator-link" %>
+        <%= link_to "Remove checkin", place_checkin_path(checkin.place, checkin), method: :delete, class: "checkin-creator-link" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
