@@ -33,8 +33,9 @@
         <% end %>
       </div>
     <% end %>
-
-    <%=  render "comments/comment_form" %>
+    <% if logged_in? %>
+      <%=  render "comments/comment_form" %>
+    <% end %>
   </div>
 </div>
 
