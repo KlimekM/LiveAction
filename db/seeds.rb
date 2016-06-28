@@ -6,15 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Place.create!(name: "Air Canada Centre", description: "Home of the Toronto Raptors", address: "40 Bay Street", city: "Toronto", state: "Ontario", capacity: 19800, date_opened: Date.new(1999, 2, 19), image_url: "https://upload.wikimedia.org/wikipedia/commons/d/d8/ACC_on_Bay_St_and_CN_Tower.JPG")
+Place.create!(name: "Air Canada Centre", description: "Home of the Toronto Raptors", address: "40 Bay Street", city: "Toronto", state: "Ontario", capacity: 19800, date_opened: Date.new(1999, 2, 19), image_url: "http://hg2.com/wp-content/uploads/2015/07/toronto-play-air-canada-centre-3.jpg")
 
-Place.create!(name: "American Airlines Arena", description: "Home of the Miami Heat", address: "601 Biscayne Blvd", city: "Miami", state: "Florida", capacity: 19600, date_opened: Date.new(1999, 12, 31), image_url: "https://upload.wikimedia.org/wikipedia/commons/4/44/American_Airlines_Arena%2C_Miami%2C_FL%2C_jjron_29.03.2012.jpg")
+Place.create!(name: "American Airlines Arena", description: "Home of the Miami Heat", address: "601 Biscayne Blvd", city: "Miami", state: "Florida", capacity: 19600, date_opened: Date.new(1999, 12, 31), image_url: "http://i.cdn.turner.com/drp/nba/heat/sites/default/files/styles/story_main_photo/public/780x521_arena_150127.jpg?itok=J2q4ywQY")
 
-Place.create!(name: "American Airlines Center", description: "Home of the Dallas Mavericks", address: "2500 Victory Avenue", city: "Dallas", state: "Texas", capacity: 19200, date_opened: Date.new(1999, 9, 1), image_url: "https://upload.wikimedia.org/wikipedia/commons/b/bc/American_Airlines_Center_August_2015.jpg")
+Place.create!(name: "American Airlines Center", description: "Home of the Dallas Mavericks", address: "2500 Victory Avenue", city: "Dallas", state: "Texas", capacity: 19200, date_opened: Date.new(1999, 9, 1), image_url: "http://images2.dallasobserver.com/imager/u/original/6445495/8971675.0.jpg")
 
-Place.create!(name: "Amway Center", description: "Home of the Orlando Magic", address: "400 W Church St #200", city: "Orlando", state: "Florida", capacity: 18846, date_opened: Date.new(2010, 10, 1), image_url: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Amway_Center.jpg")
+Place.create!(name: "Amway Center", description: "Home of the Orlando Magic", address: "400 W Church St #200", city: "Orlando", state: "Florida", capacity: 18846, date_opened: Date.new(2010, 10, 1), image_url: "https://s-media-cache-ak0.pinimg.com/originals/a2/bb/80/a2bb80ca97370e73b1c7cd7013c69328.jpg")
 
-Place.create!(name: "AT&T Center", description: "Home of the San Antonio Spurs", address: "1 AT&T Center Parkway", city: "San Antonio", state: "Texas", capacity: 18581, date_opened: Date.new(2002, 10, 18), image_url: "https://upload.wikimedia.org/wikipedia/commons/8/8f/ATTCenter.jpg")
+Place.create!(name: "AT&T Center", description: "Home of the San Antonio Spurs", address: "1 AT&T Center Parkway", city: "San Antonio", state: "Texas", capacity: 18581, date_opened: Date.new(2002, 10, 18), image_url: "https://pbs.twimg.com/profile_images/708007965110837248/VtdN345y.jpg")
 
 Place.create!(name: "Bankers Life Fieldhouse", description: "Home of the Indiana Pacers", address: "125 South Pennsylvania Street", city: "Indianapolis", state: "Indiana", capacity: 18165, date_opened: Date.new(1999, 11, 6), image_url: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Bankers_Life_Fieldhouse%2C_Indian%C3%A1polis%2C_Estados_Unidos%2C_2012-10-22%2C_DD_01.jpg")
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160612222058) do
+ActiveRecord::Schema.define(version: 20160628165849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,11 +28,9 @@ ActiveRecord::Schema.define(version: 20160612222058) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "commenter_id"
-    t.integer  "commentable_id"
-    t.string   "commentable_type"
     t.string   "text"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "friendships", force: :cascade do |t|
@@ -44,10 +42,8 @@ ActiveRecord::Schema.define(version: 20160612222058) do
 
   create_table "likes", force: :cascade do |t|
     t.integer  "liker_id"
-    t.integer  "likeable_id"
-    t.string   "likeable_type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "places", force: :cascade do |t|
