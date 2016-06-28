@@ -36,10 +36,11 @@ nav a {
   text-decoration: none;
 }
 
-nav li:hover {
-  background-color: #f11149;
+nav a:hover {
+  color: #f1b310;
 }
 
 main {
   margin: 3em;
+  font-family: 'Lato', sans-serif;
 }
