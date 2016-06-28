@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
   def already_friends?(user)
     self.friends.include?(user)
   end
+
+  def already_liked?(checkin)
+    self.likes.find_by(liker_id: self.id, checkin_id: checkin.id)
+  end
 end
