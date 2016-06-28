@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   def create
     @checkin = Checkin.find(params[:checkin_id])
     @place = @checkin.place
-    @comment = Comment.new(commenter_id: session[:user_id], text: params[:comment][:text])
+    @comment = Comment.new(commenter_id: session[:user_id], checkin_id: @checkin.id, text: params[:comment][:text])
     if @comment.save
       redirect_to [@place, @checkin]
     else
