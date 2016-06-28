@@ -27,5 +27,5 @@
 
 .user-form input[type=submit]:hover {
   cursor: pointer;
-  background-color: #f11149;
+  color: #f1b310;
 }

@@ -8,7 +8,6 @@
 
 .user-checkins {
   width: 75%;
-  /*background-color: white;*/
   float: right;
 }
 
@@ -17,13 +16,14 @@
   background-color: #f1b310;
   text-align: left;
   padding-left: 5px;
+  padding-bottom: 1%;
   margin: 5px;
   border-top-right-radius: 5%;
   border-top-left-radius: 5%;
 }
 
 .user-edit-link {
-  background-color: #f11149;
+  background-color: #006bb7;
   color: white;
   text-decoration: none;
   display: inline-block;
@@ -31,6 +31,10 @@
   line-height: 25px;
   width: 125px;
   margin-left: 5px;
+}
+
+.user-edit-link:hover {
+  color: #f1b310;
 }
 
 .friends-header {
@@ -42,14 +46,16 @@
 }
 
 .friend-link {
-  color: #f11149;
+  color: #006bb7;
   text-decoration: none;
   margin-left: 5px;
+  padding: 1%;
 }
 
 .friend-link:hover {
   color: white;
-  background-color: #f11149;
+  background-color: #006bb7;
+  color: #f1b310;;
 }
 
 .user-checkin-container {
@@ -62,7 +68,6 @@
   color: #006bb7;
   vertical-align: top;
   padding-bottom: 10px;
-  font-size: 18px;
 }
 
 .user-checkin-container p {

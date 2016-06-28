@@ -7,9 +7,9 @@
   <% end %>
 
   <% if logged_in? && !current_user.own_profile?(@user) && current_user.already_friends?(@user) %>
-    <%= link_to "Remove Friend", friendship_path(id: @user.id), method: :delete %>
+    <%= link_to "Remove Friend", friendship_path(id: @user.id), method: :delete, class: "user-edit-link" %>
   <% elsif logged_in? && !current_user.own_profile?(@user) %>
-    <%= link_to "Add Friend", friendships_path(id: @user.id), method: :post %>
+    <%= link_to "Add Friend", friendships_path(id: @user.id), method: :post, class: "user-edit-link" %>
   <% end %>
 
   <div>

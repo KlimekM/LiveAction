@@ -8,6 +8,7 @@
   width: 45%;
   height: 250px;
   border-radius: 5%;
+  display: inline-block;
 }
 
 .place-details {
@@ -15,8 +16,10 @@
   color: white;
   font-size: 2em;
   width: 45%;
-  float: right;
   text-align: left;
+  display: inline-block;
+  margin-left: 5%;
+  vertical-align: top;
 }
 
 .place-details p {
@@ -40,7 +43,7 @@
 
 .checkin-button:hover {
   color: white;
-  background-color: #f11149;
+  background-color: #006bb7;
 }
 
 .checkin-container {
@@ -66,7 +69,7 @@
 
 .checkin-show-link:hover {
   color: white;
-  background-color: #f11149;
+  background-color: #006bb7;
 }
 
 .user-show-link {
@@ -120,7 +123,7 @@
 
 .checkin-form input[type=submit]:hover {
   cursor: pointer;
-  background-color: #f11149;
+  color: #f1b310;
 }
 
 .checkin-info-container {
@@ -144,16 +147,16 @@
 }
 
 .checkin-creator-link {
-  background-color: #f11149;
+  background-color: #006bb7;
   color: white;
   line-height: 25px;
   width: 125px;
   text-decoration: none;
-  display: inline-block;
+  padding: 5px;
 }
 
 .checkin-creator-link:hover {
-  text-decoration: none;
+  color: #f1b310;
 }
 
 .comments-container {
@@ -197,8 +200,13 @@
   border-radius: 5%;
 }
 
+.comment-form input[type=submit]:hover {
+  color: #f1b310;
+  cursor: pointer;
+}
+
 .comment-edit-link {
-  background-color: #f11149;
+  background-color: #006bb7;
   color: white;
   text-decoration: none;
   display: inline-block;
@@ -212,7 +220,7 @@
 }
 
 .comment-delete-link input[type=submit] {
-  background-color: #f11149;
+  background-color: #006bb7;
   color: white;
   box-shadow: none;
   border: none;
@@ -221,4 +229,12 @@
   height: 25px;
   width: 125px;
   margin-bottom: 5px;
+}
+
+.comment-edit-link:hover {
+  color: #f1b310;
+}
+
+.comment-delete-link input[type=submit]:hover {
+  color: #f1b310;
 }
