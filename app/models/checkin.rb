@@ -1,8 +1,8 @@
 class Checkin < ActiveRecord::Base
   belongs_to :user
   belongs_to :place
-  has_many   :comments, foreign_key: :commentable_id
-  has_many   :likes, foreign_key: :likeable_id
+  has_many   :comments
+  has_many   :likes
 
   validate :date_attended_cannot_be_in_the_future, on: [:create, :update]
 
