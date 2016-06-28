@@ -7,9 +7,14 @@ A web application built using Ruby on Rails and styled with raw CSS. The app is 
 Visit http://liveaction.herokuapp.com/ to check out the project.
 
 ## Screenshots
+
 ![home page](public/homepage.png)
 
+![arena show](public/arena-show.png)
+
+![user profile](public/user-profile.png)
 
 ## Schema
 
+![schema](public/schema.png)
 
