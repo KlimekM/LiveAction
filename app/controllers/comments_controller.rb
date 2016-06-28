@@ -2,9 +2,9 @@ class CommentsController < ApplicationController
   before_action :place_does_not_exist, :checkin_does_not_exist, :comment_does_not_exist, only: :edit
 
   def create
-    @checkin = Checkin.find_by_id(params[:checkin_id])
+    @checkin = Checkin.find(params[:checkin_id])
     @place = @checkin.place
-    @comment = Comment.new(commenter_id: session[:user_id], commentable_type: "Checkin", commentable_id: @checkin.id, text: params[:comment][:text])
+    @comment = Comment.new(commenter_id: session[:user_id], checkin_id: @checkin.id, text: params[:comment][:text])
     if @comment.save
       redirect_to [@place, @checkin]
     else
