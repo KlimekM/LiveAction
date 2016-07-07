@@ -21,7 +21,7 @@ Visit http://liveaction.herokuapp.com/ to check out the project.
 The screen shot is up to date. If you would like to see the test coverage for a particular controller please follow the steps below:
 
 1. Clone the repository to your local machine: <tt>git clone https://github.com/KlimekM/LiveAction.git</tt>
-2. Install the dependencies <tt>bundle install/tt>
+2. Install the dependencies <tt>bundle install</tt>
 3. Run the tests <tt>be rspec</tt>
 4. Open <tt>coverage/index.html</tt> in your browser.
 
